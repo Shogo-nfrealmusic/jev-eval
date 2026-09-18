@@ -1,0 +1,23 @@
+warmup jev: ok 827ms
+warmup llm: ok 2534ms
+r1 s01 expected=reschedule llm=reschedule(2121ms) jev=reschedule(505ms)
+r1 s05 expected=reschedule jev=reschedule(431ms) llm=reschedule(1961ms)
+r1 s09 expected=cancel llm=cancel(1795ms) jev=cancel(529ms)
+r1 s13 expected=refund jev=refund(497ms) llm=refund(1642ms)
+r1 s17 expected=location llm=location(2087ms) jev=location(397ms)
+r1 s21 expected=pricing jev=pricing(525ms) llm=pricing(1750ms)
+r1 s25 expected=pricing llm=pricing(2024ms) jev=pricing(418ms)
+r1 s29 expected=group_size jev=group_size(524ms) llm=group_size(2092ms)
+r1 s33 expected=late_arrival llm=late_arrival(2006ms) jev=late_arrival(613ms)
+r1 s37 expected=weather jev=weather(372ms) llm=weather(2253ms)
+r1 h01 expected=reschedule llm=reschedule(1703ms) jev=reschedule(557ms)
+r1 h03 expected=other jev=other(414ms) llm=other(1740ms)
+r1 h05 expected=late_arrival llm=late_arrival(1873ms) jev=late_arrival(365ms)
+r1 h07 expected=other jev=reschedule(360ms) llm=other(1909ms)
+r1 h09 expected=other llm=other(1924ms) jev=other(375ms)
+r1 h11 expected=refund jev=refund(380ms) llm=refund(2586ms)
+r1 h13 expected=reschedule llm=reschedule(1846ms) jev=reschedule(506ms)
+r1 h15 expected=reschedule jev=late_arrival(347ms) llm=late_arrival(1979ms)
+r1 h17 expected=weather llm=weather(1875ms) jev=weather(362ms)
+r1 h19 expected=location jev=location(384ms) llm=other(1797ms)
+saved: results/raw/2026-09-18T11-31-50-447Z

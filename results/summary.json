@@ -1,0 +1,390 @@
+{
+  "runId": "2026-09-18T11-18-14-993Z",
+  "startedAt": "2026-09-18T11:18:14.994Z",
+  "finishedAt": "2026-09-18T11:23:18.972Z",
+  "rounds": 3,
+  "nCases": 60,
+  "subset": null,
+  "models": {
+    "jev": "typesafe-ai/jev",
+    "llm": "openai/gpt-4o-mini"
+  },
+  "aiSdk": "7.0.106",
+  "node": "v26.5.0",
+  "jev": {
+    "model": "typesafe-ai/jev",
+    "calls": 180,
+    "errors": 0,
+    "category": {
+      "strict": {
+        "correct": 173,
+        "n": 180,
+        "pct": 96.1
+      },
+      "strictByRound": [
+        96.7,
+        96.7,
+        95
+      ],
+      "lenient": {
+        "correct": 177,
+        "n": 180,
+        "pct": 98.3
+      },
+      "lenientByRound": [
+        98.3,
+        98.3,
+        98.3
+      ],
+      "perCategory": {
+        "reschedule": {
+          "correct": 24,
+          "n": 27,
+          "pct": 88.9
+        },
+        "cancel": {
+          "correct": 18,
+          "n": 18,
+          "pct": 100
+        },
+        "refund": {
+          "correct": 18,
+          "n": 18,
+          "pct": 100
+        },
+        "location": {
+          "correct": 18,
+          "n": 18,
+          "pct": 100
+        },
+        "pricing": {
+          "correct": 18,
+          "n": 18,
+          "pct": 100
+        },
+        "group_size": {
+          "correct": 17,
+          "n": 18,
+          "pct": 94.4
+        },
+        "late_arrival": {
+          "correct": 21,
+          "n": 21,
+          "pct": 100
+        },
+        "weather": {
+          "correct": 24,
+          "n": 24,
+          "pct": 100
+        },
+        "other": {
+          "correct": 15,
+          "n": 18,
+          "pct": 83.3
+        }
+      },
+      "easy": {
+        "correct": 120,
+        "n": 120,
+        "pct": 100
+      },
+      "hard": {
+        "correct": 53,
+        "n": 60,
+        "pct": 88.3
+      }
+    },
+    "urgency": {
+      "correct": 174,
+      "n": 180,
+      "pct": 96.7,
+      "byRound": [
+        96.7,
+        96.7,
+        96.7
+      ],
+      "exactlyHalf": 2,
+      "strictlyAboveHalf": {
+        "correct": 172,
+        "n": 180,
+        "pct": 95.6
+      }
+    },
+    "needsHuman": {
+      "correct": 147,
+      "n": 180,
+      "pct": 81.7,
+      "byRound": [
+        80,
+        81.7,
+        83.3
+      ],
+      "missed": {
+        "count": 21,
+        "of": 69,
+        "pct": 30.4
+      }
+    },
+    "latencyMs": {
+      "p50": 379,
+      "p95": 481,
+      "rawCallsP50": 381,
+      "rawCallsP95": 589
+    },
+    "cost": {
+      "source": "measured (AI Gateway providerMetadata.gateway.cost)",
+      "per1000Usd": 0.03210899999999999,
+      "totalUsd": 0.005779619999999998,
+      "avgInputTokens": 765,
+      "avgOutputTokens": 119
+    }
+  },
+  "llm": {
+    "model": "openai/gpt-4o-mini",
+    "calls": 180,
+    "errors": 0,
+    "category": {
+      "strict": {
+        "correct": 169,
+        "n": 180,
+        "pct": 93.9
+      },
+      "strictByRound": [
+        93.3,
+        93.3,
+        95
+      ],
+      "lenient": {
+        "correct": 180,
+        "n": 180,
+        "pct": 100
+      },
+      "lenientByRound": [
+        100,
+        100,
+        100
+      ],
+      "perCategory": {
+        "reschedule": {
+          "correct": 24,
+          "n": 27,
+          "pct": 88.9
+        },
+        "cancel": {
+          "correct": 18,
+          "n": 18,
+          "pct": 100
+        },
+        "refund": {
+          "correct": 18,
+          "n": 18,
+          "pct": 100
+        },
+        "location": {
+          "correct": 18,
+          "n": 18,
+          "pct": 100
+        },
+        "pricing": {
+          "correct": 16,
+          "n": 18,
+          "pct": 88.9
+        },
+        "group_size": {
+          "correct": 18,
+          "n": 18,
+          "pct": 100
+        },
+        "late_arrival": {
+          "correct": 21,
+          "n": 21,
+          "pct": 100
+        },
+        "weather": {
+          "correct": 18,
+          "n": 24,
+          "pct": 75
+        },
+        "other": {
+          "correct": 18,
+          "n": 18,
+          "pct": 100
+        }
+      },
+      "easy": {
+        "correct": 120,
+        "n": 120,
+        "pct": 100
+      },
+      "hard": {
+        "correct": 49,
+        "n": 60,
+        "pct": 81.7
+      }
+    },
+    "urgency": {
+      "correct": 90,
+      "n": 180,
+      "pct": 50,
+      "byRound": [
+        46.7,
+        53.3,
+        50
+      ],
+      "exactlyHalf": 69,
+      "strictlyAboveHalf": {
+        "correct": 149,
+        "n": 180,
+        "pct": 82.8
+      }
+    },
+    "needsHuman": {
+      "correct": 142,
+      "n": 180,
+      "pct": 78.9,
+      "byRound": [
+        78.3,
+        80,
+        78.3
+      ],
+      "missed": {
+        "count": 16,
+        "of": 69,
+        "pct": 23.2
+      }
+    },
+    "latencyMs": {
+      "p50": 1209,
+      "p95": 1462,
+      "rawCallsP50": 1196,
+      "rawCallsP95": 1849
+    },
+    "cost": {
+      "source": "measured (AI Gateway providerMetadata.gateway.cost)",
+      "per1000Usd": 0.12216166666666656,
+      "totalUsd": 0.02198909999999998,
+      "avgInputTokens": 737,
+      "avgOutputTokens": 19
+    }
+  },
+  "simulation": {
+    "thresholds": {
+      "auto": "> 0.95",
+      "confirm": "0.70 - 0.95",
+      "human": "< 0.70"
+    },
+    "basis": "max category probability",
+    "n": 180,
+    "buckets": {
+      "auto": {
+        "n": 157,
+        "share": 87.2,
+        "correct": 157,
+        "accuracy": 100,
+        "needsHumanExpected": 49,
+        "needsHumanMissed": 18,
+        "needsHumanMissedCases": [
+          "h01",
+          "h08",
+          "h17",
+          "h18",
+          "h19",
+          "h20"
+        ]
+      },
+      "confirm": {
+        "n": 8,
+        "share": 4.4,
+        "correct": 5,
+        "accuracy": 62.5,
+        "needsHumanExpected": 8,
+        "needsHumanMissed": 3,
+        "needsHumanMissedCases": [
+          "h15"
+        ]
+      },
+      "human": {
+        "n": 15,
+        "share": 8.3,
+        "correct": 11,
+        "accuracy": 73.3,
+        "needsHumanExpected": 12,
+        "needsHumanMissed": 0,
+        "needsHumanMissedCases": []
+      }
+    },
+    "needsHumanGate": {
+      "note": "post-hoc thresholds, not validated",
+      "baseAuto": 157,
+      "baseSlipped": 18,
+      "rows": [
+        {
+          "x": 0.2,
+          "auto": 10,
+          "share": 5.6,
+          "categoryAccuracy": 100,
+          "slippedNeedsHuman": 0,
+          "slippedCases": [],
+          "caughtOfBaseMissed": 18,
+          "movedToHuman": 147
+        },
+        {
+          "x": 0.25,
+          "auto": 35,
+          "share": 19.4,
+          "categoryAccuracy": 100,
+          "slippedNeedsHuman": 0,
+          "slippedCases": [],
+          "caughtOfBaseMissed": 18,
+          "movedToHuman": 122
+        },
+        {
+          "x": 0.3,
+          "auto": 53,
+          "share": 29.4,
+          "categoryAccuracy": 100,
+          "slippedNeedsHuman": 6,
+          "slippedCases": [
+            "h08",
+            "h19",
+            "h18"
+          ],
+          "caughtOfBaseMissed": 12,
+          "movedToHuman": 104
+        },
+        {
+          "x": 0.4,
+          "auto": 99,
+          "share": 55,
+          "categoryAccuracy": 100,
+          "slippedNeedsHuman": 12,
+          "slippedCases": [
+            "h08",
+            "h17",
+            "h18",
+            "h19"
+          ],
+          "caughtOfBaseMissed": 6,
+          "movedToHuman": 58
+        },
+        {
+          "x": 0.5,
+          "auto": 117,
+          "share": 65,
+          "categoryAccuracy": 100,
+          "slippedNeedsHuman": 18,
+          "slippedCases": [
+            "h01",
+            "h08",
+            "h17",
+            "h18",
+            "h19",
+            "h20"
+          ],
+          "caughtOfBaseMissed": 0,
+          "movedToHuman": 40
+        }
+      ]
+    }
+  }
+}

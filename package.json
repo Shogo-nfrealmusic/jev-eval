@@ -1,0 +1,28 @@
+{
+  "name": "jev-eval",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "measure": "tsx src/run.ts",
+    "score": "tsx src/score.ts",
+    "charts": "tsx src/charts.ts",
+    "demo": "tsx web/server.ts",
+    "demo:live": "tsx web/server.ts --live",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "ai": "^7.0.106",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
