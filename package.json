@@ -10,7 +10,8 @@
     "charts": "tsx src/charts.ts",
     "demo": "tsx web/server.ts",
     "demo:live": "tsx web/server.ts --live",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "measure:claude": "tsx src/run.ts --rounds 3 --llm anthropic/claude-sonnet-4.5"
   },
   "keywords": [],
   "author": "",

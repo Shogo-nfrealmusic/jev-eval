@@ -1,6 +1,6 @@
 # jev-eval
 
-A third-party check of **Jev** (`typesafe-ai/jev`), TypeSafe AI's judgment-only model, against LLMs (`openai/gpt-4o-mini`, plus `anthropic/claude-sonnet-4.5`) under identical conditions.
+A third-party check of **Jev** (`typesafe-ai/jev`), TypeSafe AI's judgment-only model, against LLMs (`openai/gpt-4o-mini` and `anthropic/claude-sonnet-4.5`) under identical conditions.
 The task: routing booking inquiries sent to a photo-shoot service for international tourists in Japan (60 synthetic messages in 4 languages).
 
 **Results are in [RESULTS.md](RESULTS.md).**
@@ -13,7 +13,7 @@ The task: routing booking inquiries sent to a photo-shoot service for internatio
 ### Getting an AI_GATEWAY_API_KEY
 
 1. Log in to Vercel and create an API key on the AI Gateway page of your dashboard
-2. On the free tier you will hit rate limits (HTTP 429) and the full run stops partway; some models (e.g. Claude) are not available on the free tier at all. **Add AI Gateway credits before measuring.** The full run (60 cases × 3 rounds × 2 models) cost about $0.03
+2. On the free tier you will hit rate limits (HTTP 429) and the full run stops partway; some models (e.g. Claude) are not available on the free tier at all. **Add AI Gateway credits before measuring.** The main run (60 × 3, Jev + gpt-4o-mini) cost about $0.03; the Claude run (60 × 3, Jev + Sonnet 4.5) about $0.62
 3. Create `.env.local` in the repository root with the key
 
 ```bash
@@ -34,14 +34,15 @@ npx tsx src/smoke.ts   # one call each to Jev and the LLMs, to confirm they are 
 | Command | What it does |
 |---|---|
 | `npm run measure` | Main run. 60 cases × 3 rounds, Jev and gpt-4o-mini called serially; raw responses saved to `results/raw/<runId>/`. One warm-up call per model is discarded first. No retries |
-| `npm run measure -- --subset large20 --rounds 1 --llm anthropic/claude-sonnet-4.5` | Extra run with a different comparison model (the 20 cases are fixed in `src/subsets.ts`) |
-| `npm run score` | Scores the most recent run into `results/summary.json` and `results/per-case.json`. To pick a run: `npm run score -- <runId>`. For the extra run, `npm run score -- <runId> sonnet` writes files suffixed `-sonnet` |
+| `npm run measure:claude` | Same 60 × 3 run with `anthropic/claude-sonnet-4.5` as the comparison model (Jev re-measured alongside). Score it with `npm run score -- <runId> sonnet60` |
+| `npm run measure -- --subset large20 --rounds 1 --llm anthropic/claude-sonnet-4.5` | Pilot run (superseded) (the 20 cases are fixed in `src/subsets.ts`) |
+| `npm run score` | Scores the most recent run into `results/summary.json` and `results/per-case.json`. To pick a run: `npm run score -- <runId>`. Add a name to write suffixed files instead, e.g. `npm run score -- <runId> sonnet60` |
 | `npm run charts` | Writes three SVG charts for the blog post to `results/charts/` (transparent background, readable on both light and dark pages) |
-| `npm run demo` | Replay demo. Open http://localhost:5173 and click or press Space to start (append `/?autostart` to start automatically 1 s after load). Fixed 1280×720 layout. Replays 12 measured cases side by side, each taking exactly its measured round-1 latency |
-| `npm run demo:live` | Live demo that calls the APIs on the spot. Not a measurement: both lanes are called in parallel, which differs from the measurement conditions |
+| `npm run demo` | Replay demo. Open http://localhost:5173 and click or press Space to start (append `/?autostart` to start automatically 1 s after load). Fixed 1280×720 layout. Replays 12 measured cases in three lanes (Jev / GPT-4o-mini / Claude Sonnet 4.5) side by side, each taking exactly its measured round-1 latency. The Claude lane appears once `results/summary-sonnet60.json` exists |
+| `npm run demo:live` | Live demo that calls the APIs on the spot. Not a measurement: all lanes are called in parallel, which differs from the measurement conditions |
 | `npm run typecheck` | TypeScript type check |
 
-Note: with no argument, `npm run score` scores the **most recent** run. After an extra run, pass the runId explicitly to re-score the main run.
+Note: with no argument, `npm run score` scores the **most recent** run. After another run, pass the runId explicitly to re-score the main run.
 
 ## Layout
 
@@ -55,7 +56,7 @@ src/
   run.ts          Measurement (serial, warm-up, rounds, raw response logging)
   score.ts        Scoring (accuracy, latency p50/p95, cost, operational simulation)
   charts.ts       SVG charts
-  subsets.ts      The 20 cases for the extra run (fixed mechanically before seeing results)
+  subsets.ts      The 20 cases for the pilot Claude run (fixed mechanically before seeing results)
   demo-cases.ts   The 12 demo cases (fixed mechanically before seeing results)
   smoke.ts        Connectivity check
 web/

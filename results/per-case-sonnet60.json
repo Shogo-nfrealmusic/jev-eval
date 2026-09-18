@@ -1,0 +1,6968 @@
+[
+  {
+    "id": "s01",
+    "lang": "en",
+    "hard": false,
+    "text": "Hi, we booked a family shoot in Asakusa on October 12. Would it be possible to move it to October 14 at the same time? Thanks!",
+    "expected": {
+      "category": "reschedule",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 504,
+          "costUsd": 0.000032592,
+          "category": "reschedule",
+          "categoryProbs": {
+            "group_size": 0,
+            "late_arrival": 0,
+            "reschedule": 1,
+            "location": 0,
+            "refund": 0,
+            "cancel": 0,
+            "pricing": 0,
+            "weather": 0,
+            "other": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.19
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 686,
+          "costUsd": 0.000032592,
+          "category": "reschedule",
+          "categoryProbs": {
+            "cancel": 0,
+            "refund": 0,
+            "reschedule": 1,
+            "location": 0,
+            "weather": 0,
+            "other": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "group_size": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.21
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 418,
+          "costUsd": 0.000032592,
+          "category": "reschedule",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "refund": 0,
+            "weather": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "location": 0,
+            "cancel": 0,
+            "other": 0,
+            "reschedule": 1
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.21
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1910,
+          "costUsd": 0.003453,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2077,
+          "costUsd": 0.003453,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2114,
+          "costUsd": 0.003453,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s02",
+    "lang": "en",
+    "hard": false,
+    "text": "Could we push our session on Nov 3 from 9am to 3pm instead? Same location (Shibuya Crossing).",
+    "expected": {
+      "category": "reschedule",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 346,
+          "costUsd": 0.000032214,
+          "category": "reschedule",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "reschedule": 1,
+            "location": 0,
+            "other": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "weather": 0,
+            "cancel": 0
+          },
+          "urgency": 0.09,
+          "urgencyProbs": {
+            "0": 0.91,
+            "1": 0.09
+          },
+          "needsHumanProb": 0.23
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 351,
+          "costUsd": 0.000032214,
+          "category": "reschedule",
+          "categoryProbs": {
+            "reschedule": 1,
+            "other": 0,
+            "pricing": 0,
+            "location": 0,
+            "late_arrival": 0,
+            "weather": 0,
+            "group_size": 0,
+            "cancel": 0,
+            "refund": 0
+          },
+          "urgency": 0.08,
+          "urgencyProbs": {
+            "0": 0.92,
+            "1": 0.08
+          },
+          "needsHumanProb": 0.22
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 400,
+          "costUsd": 0.000032214,
+          "category": "reschedule",
+          "categoryProbs": {
+            "weather": 0,
+            "reschedule": 1,
+            "group_size": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "refund": 0,
+            "cancel": 0,
+            "pricing": 0,
+            "other": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.22
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1751,
+          "costUsd": 0.003432,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1895,
+          "costUsd": 0.003432,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1985,
+          "costUsd": 0.003432,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s03",
+    "lang": "zh",
+    "hard": false,
+    "text": "你好，我们预订了10月20日在京都伏见稻荷的拍摄，请问可以改到10月22日吗？",
+    "expected": {
+      "category": "reschedule",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 379,
+          "costUsd": 0.000032718,
+          "category": "reschedule",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "location": 0,
+            "weather": 0,
+            "late_arrival": 0,
+            "reschedule": 1,
+            "group_size": 0,
+            "cancel": 0,
+            "pricing": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.23
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 365,
+          "costUsd": 0.000032718,
+          "category": "reschedule",
+          "categoryProbs": {
+            "reschedule": 1,
+            "cancel": 0,
+            "other": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "weather": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.23
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 335,
+          "costUsd": 0.000032718,
+          "category": "reschedule",
+          "categoryProbs": {
+            "reschedule": 1,
+            "weather": 0,
+            "cancel": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "location": 0,
+            "pricing": 0,
+            "other": 0,
+            "refund": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.21
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1733,
+          "costUsd": 0.003465,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1982,
+          "costUsd": 0.003465,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1909,
+          "costUsd": 0.00348,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s04",
+    "lang": "ko",
+    "hard": false,
+    "text": "안녕하세요, 10월 25일 오사카 촬영 예약했는데 26일로 날짜 변경 가능할까요?",
+    "expected": {
+      "category": "reschedule",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 345,
+          "costUsd": 0.000032676,
+          "category": "reschedule",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "location": 0,
+            "weather": 0,
+            "late_arrival": 0,
+            "reschedule": 1,
+            "cancel": 0,
+            "group_size": 0,
+            "pricing": 0
+          },
+          "urgency": 0.12,
+          "urgencyProbs": {
+            "0": 0.88,
+            "1": 0.12
+          },
+          "needsHumanProb": 0.21
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 542,
+          "costUsd": 0.000032676,
+          "category": "reschedule",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "reschedule": 1,
+            "cancel": 0,
+            "weather": 0
+          },
+          "urgency": 0.13,
+          "urgencyProbs": {
+            "0": 0.87,
+            "1": 0.13
+          },
+          "needsHumanProb": 0.19
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 352,
+          "costUsd": 0.000032676,
+          "category": "reschedule",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "refund": 0,
+            "location": 0,
+            "weather": 0,
+            "cancel": 0,
+            "reschedule": 1,
+            "pricing": 0
+          },
+          "urgency": 0.12,
+          "urgencyProbs": {
+            "0": 0.88,
+            "1": 0.12
+          },
+          "needsHumanProb": 0.2
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2304,
+          "costUsd": 0.003492,
+          "category": "reschedule",
+          "urgency": 0.4,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2066,
+          "costUsd": 0.003477,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1968,
+          "costUsd": 0.003477,
+          "category": "reschedule",
+          "urgency": 0.4,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s05",
+    "lang": "ja",
+    "hard": false,
+    "text": "お世話になっております。11月8日の撮影を11月15日に変更したいのですが、空いていますでしょうか。",
+    "expected": {
+      "category": "reschedule",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 508,
+          "costUsd": 0.00003318,
+          "category": "reschedule",
+          "categoryProbs": {
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "reschedule": 1,
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "cancel": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.18
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 335,
+          "costUsd": 0.00003318,
+          "category": "reschedule",
+          "categoryProbs": {
+            "reschedule": 1,
+            "refund": 0,
+            "late_arrival": 0,
+            "cancel": 0,
+            "pricing": 0,
+            "location": 0,
+            "group_size": 0,
+            "weather": 0,
+            "other": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.18
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 689,
+          "costUsd": 0.00003318,
+          "category": "reschedule",
+          "categoryProbs": {
+            "pricing": 0,
+            "refund": 0,
+            "location": 0,
+            "cancel": 0,
+            "weather": 0,
+            "other": 0,
+            "reschedule": 1,
+            "group_size": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.17
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 7628,
+          "costUsd": 0.003474,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1749,
+          "costUsd": 0.003459,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2243,
+          "costUsd": 0.003459,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s06",
+    "lang": "en",
+    "hard": false,
+    "text": "Unfortunately our trip to Japan has been called off. Please cancel our booking for December 2.",
+    "expected": {
+      "category": "cancel",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 557,
+          "costUsd": 0.000031878,
+          "category": "cancel",
+          "categoryProbs": {
+            "pricing": 0,
+            "refund": 0,
+            "location": 0,
+            "cancel": 1,
+            "weather": 0,
+            "group_size": 0,
+            "reschedule": 0,
+            "other": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.51
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 557,
+          "costUsd": 0.000031878,
+          "category": "cancel",
+          "categoryProbs": {
+            "pricing": 0,
+            "refund": 0,
+            "location": 0,
+            "cancel": 1,
+            "weather": 0,
+            "other": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.52
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 373,
+          "costUsd": 0.000031878,
+          "category": "cancel",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "location": 0,
+            "group_size": 0,
+            "weather": 0,
+            "pricing": 0,
+            "cancel": 1,
+            "other": 0
+          },
+          "urgency": 0.08,
+          "urgencyProbs": {
+            "0": 0.92,
+            "1": 0.08
+          },
+          "needsHumanProb": 0.47
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1831,
+          "costUsd": 0.003369,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1922,
+          "costUsd": 0.003369,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1778,
+          "costUsd": 0.003369,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "s07",
+    "lang": "en",
+    "hard": false,
+    "text": "Hi, I need to cancel the couple shoot we booked for next month. Our plans changed. Sorry for the trouble.",
+    "expected": {
+      "category": "cancel",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 613,
+          "costUsd": 0.000032088,
+          "category": "cancel",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "location": 0,
+            "reschedule": 0,
+            "cancel": 1,
+            "refund": 0,
+            "group_size": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.47
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 425,
+          "costUsd": 0.000032088,
+          "category": "cancel",
+          "categoryProbs": {
+            "pricing": 0,
+            "refund": 0,
+            "location": 0,
+            "cancel": 1,
+            "weather": 0,
+            "group_size": 0,
+            "reschedule": 0,
+            "other": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.48
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 358,
+          "costUsd": 0.000032088,
+          "category": "cancel",
+          "categoryProbs": {
+            "weather": 0,
+            "reschedule": 0,
+            "late_arrival": 0,
+            "refund": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "location": 0,
+            "other": 0,
+            "cancel": 1
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.5
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2239,
+          "costUsd": 0.003387,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 6707,
+          "costUsd": 0.003387,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2724,
+          "costUsd": 0.003387,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "s08",
+    "lang": "zh",
+    "hard": false,
+    "text": "您好，因为行程有变，我想取消11月5日在东京的拍摄预约。",
+    "expected": {
+      "category": "cancel",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 418,
+          "costUsd": 0.000032214,
+          "category": "cancel",
+          "categoryProbs": {
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "refund": 0,
+            "other": 0,
+            "reschedule": 0,
+            "location": 0,
+            "late_arrival": 0,
+            "cancel": 1
+          },
+          "urgency": 0.06,
+          "urgencyProbs": {
+            "0": 0.94,
+            "1": 0.06
+          },
+          "needsHumanProb": 0.43
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 381,
+          "costUsd": 0.000032214,
+          "category": "cancel",
+          "categoryProbs": {
+            "location": 0,
+            "weather": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "cancel": 1,
+            "refund": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "other": 0
+          },
+          "urgency": 0.06,
+          "urgencyProbs": {
+            "0": 0.94,
+            "1": 0.06
+          },
+          "needsHumanProb": 0.44
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 362,
+          "costUsd": 0.000032214,
+          "category": "cancel",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "location": 0,
+            "cancel": 1,
+            "late_arrival": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "refund": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.47
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1681,
+          "costUsd": 0.003399,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 4657,
+          "costUsd": 0.003399,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1813,
+          "costUsd": 0.003399,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s09",
+    "lang": "ko",
+    "hard": false,
+    "text": "죄송하지만 11월 10일 교토 촬영 예약을 취소하고 싶습니다.",
+    "expected": {
+      "category": "cancel",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 322,
+          "costUsd": 0.000032382,
+          "category": "cancel",
+          "categoryProbs": {
+            "group_size": 0,
+            "other": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "weather": 0,
+            "refund": 0,
+            "cancel": 1
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.35
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 346,
+          "costUsd": 0.000032382,
+          "category": "cancel",
+          "categoryProbs": {
+            "location": 0,
+            "group_size": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "cancel": 1,
+            "other": 0,
+            "weather": 0,
+            "refund": 0,
+            "pricing": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.37
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 350,
+          "costUsd": 0.000032382,
+          "category": "cancel",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "location": 0,
+            "refund": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "cancel": 1,
+            "pricing": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.36
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1802,
+          "costUsd": 0.003417,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1892,
+          "costUsd": 0.003417,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2142,
+          "costUsd": 0.003417,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s10",
+    "lang": "en",
+    "hard": false,
+    "text": "Please cancel my reservation for Oct 30. We won't be able to make it.",
+    "expected": {
+      "category": "cancel",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 402,
+          "costUsd": 0.000031878,
+          "category": "cancel",
+          "categoryProbs": {
+            "pricing": 0,
+            "refund": 0,
+            "location": 0,
+            "cancel": 1,
+            "weather": 0,
+            "other": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0.06,
+          "urgencyProbs": {
+            "0": 0.94,
+            "1": 0.06
+          },
+          "needsHumanProb": 0.37
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 416,
+          "costUsd": 0.000031878,
+          "category": "cancel",
+          "categoryProbs": {
+            "reschedule": 0,
+            "cancel": 1,
+            "pricing": 0,
+            "late_arrival": 0,
+            "refund": 0,
+            "location": 0,
+            "group_size": 0,
+            "weather": 0,
+            "other": 0
+          },
+          "urgency": 0.06,
+          "urgencyProbs": {
+            "0": 0.94,
+            "1": 0.06
+          },
+          "needsHumanProb": 0.35
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 373,
+          "costUsd": 0.000031878,
+          "category": "cancel",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "cancel": 1
+          },
+          "urgency": 0.06,
+          "urgencyProbs": {
+            "0": 0.94,
+            "1": 0.06
+          },
+          "needsHumanProb": 0.35
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1665,
+          "costUsd": 0.003366,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2391,
+          "costUsd": 0.003366,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2158,
+          "costUsd": 0.003366,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s11",
+    "lang": "en",
+    "hard": false,
+    "text": "We cancelled our shoot last week, 10 days in advance as per your policy. When will the refund be processed? I haven't received anything yet.",
+    "expected": {
+      "category": "refund",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 456,
+          "costUsd": 0.000032424,
+          "category": "refund",
+          "categoryProbs": {
+            "reschedule": 0,
+            "weather": 0,
+            "cancel": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "location": 0,
+            "other": 0,
+            "refund": 1
+          },
+          "urgency": 0.38,
+          "urgencyProbs": {
+            "0": 0.62,
+            "1": 0.38
+          },
+          "needsHumanProb": 0.87
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 352,
+          "costUsd": 0.000032424,
+          "category": "refund",
+          "categoryProbs": {
+            "group_size": 0,
+            "location": 0,
+            "late_arrival": 0,
+            "other": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "weather": 0,
+            "refund": 1,
+            "cancel": 0
+          },
+          "urgency": 0.33,
+          "urgencyProbs": {
+            "0": 0.67,
+            "1": 0.33
+          },
+          "needsHumanProb": 0.87
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 613,
+          "costUsd": 0.000032424,
+          "category": "refund",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 1,
+            "late_arrival": 0,
+            "location": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "cancel": 0
+          },
+          "urgency": 0.3,
+          "urgencyProbs": {
+            "0": 0.7,
+            "1": 0.3
+          },
+          "needsHumanProb": 0.86
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1639,
+          "costUsd": 0.003426,
+          "category": "refund",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1745,
+          "costUsd": 0.003426,
+          "category": "refund",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2240,
+          "costUsd": 0.003426,
+          "category": "refund",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "s12",
+    "lang": "en",
+    "hard": false,
+    "text": "I was charged twice for my booking on Oct 3. Can you refund the duplicate payment?",
+    "expected": {
+      "category": "refund",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 337,
+          "costUsd": 0.000031878,
+          "category": "refund",
+          "categoryProbs": {
+            "refund": 1,
+            "late_arrival": 0,
+            "weather": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "location": 0,
+            "cancel": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0.05,
+          "urgencyProbs": {
+            "0": 0.95,
+            "1": 0.05
+          },
+          "needsHumanProb": 0.92
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 382,
+          "costUsd": 0.000031878,
+          "category": "refund",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "cancel": 0,
+            "location": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "refund": 1,
+            "group_size": 0,
+            "reschedule": 0
+          },
+          "urgency": 0.04,
+          "urgencyProbs": {
+            "0": 0.96,
+            "1": 0.04
+          },
+          "needsHumanProb": 0.91
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 610,
+          "costUsd": 0.000031878,
+          "category": "refund",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "location": 0,
+            "cancel": 0,
+            "refund": 1,
+            "group_size": 0
+          },
+          "urgency": 0.04,
+          "urgencyProbs": {
+            "0": 0.96,
+            "1": 0.04
+          },
+          "needsHumanProb": 0.91
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1759,
+          "costUsd": 0.003387,
+          "category": "refund",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2197,
+          "costUsd": 0.003387,
+          "category": "refund",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1947,
+          "costUsd": 0.003387,
+          "category": "refund",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "s13",
+    "lang": "zh",
+    "hard": false,
+    "text": "请问我取消预约后，定金什么时候可以退回到我的信用卡？",
+    "expected": {
+      "category": "refund",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 332,
+          "costUsd": 0.000032172,
+          "category": "refund",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "refund": 1,
+            "location": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "cancel": 0,
+            "pricing": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.84
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 385,
+          "costUsd": 0.000032172,
+          "category": "refund",
+          "categoryProbs": {
+            "weather": 0,
+            "group_size": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "location": 0,
+            "refund": 1,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.86
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 615,
+          "costUsd": 0.000032172,
+          "category": "refund",
+          "categoryProbs": {
+            "weather": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "location": 0,
+            "refund": 1,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.85
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1585,
+          "costUsd": 0.003408,
+          "category": "refund",
+          "urgency": 0.6,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 4185,
+          "costUsd": 0.003408,
+          "category": "refund",
+          "urgency": 0.6,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 3070,
+          "costUsd": 0.003408,
+          "category": "refund",
+          "urgency": 0.6,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "s14",
+    "lang": "ko",
+    "hard": false,
+    "text": "예약 취소했는데 환불은 언제 되나요? 아직 카드로 들어오지 않았어요.",
+    "expected": {
+      "category": "refund",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 316,
+          "costUsd": 0.000032256,
+          "category": "refund",
+          "categoryProbs": {
+            "reschedule": 0,
+            "location": 0,
+            "other": 0,
+            "cancel": 0,
+            "group_size": 0,
+            "refund": 1,
+            "pricing": 0,
+            "weather": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0.21,
+          "urgencyProbs": {
+            "0": 0.79,
+            "1": 0.21
+          },
+          "needsHumanProb": 0.86
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 385,
+          "costUsd": 0.000032256,
+          "category": "refund",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 1,
+            "late_arrival": 0,
+            "location": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "cancel": 0
+          },
+          "urgency": 0.15,
+          "urgencyProbs": {
+            "0": 0.85,
+            "1": 0.15
+          },
+          "needsHumanProb": 0.86
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 328,
+          "costUsd": 0.000032256,
+          "category": "refund",
+          "categoryProbs": {
+            "weather": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "refund": 1,
+            "cancel": 0,
+            "pricing": 0,
+            "other": 0
+          },
+          "urgency": 0.14,
+          "urgencyProbs": {
+            "0": 0.86,
+            "1": 0.14
+          },
+          "needsHumanProb": 0.85
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1690,
+          "costUsd": 0.003441,
+          "category": "refund",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1903,
+          "costUsd": 0.003441,
+          "category": "refund",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2096,
+          "costUsd": 0.003441,
+          "category": "refund",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "s15",
+    "lang": "en",
+    "hard": false,
+    "text": "Could you confirm how much will be refunded for my cancelled booking? I cancelled 5 days before the shoot date.",
+    "expected": {
+      "category": "refund",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 510,
+          "costUsd": 0.000032046,
+          "category": "refund",
+          "categoryProbs": {
+            "group_size": 0,
+            "other": 0,
+            "cancel": 0,
+            "refund": 1,
+            "location": 0,
+            "late_arrival": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "pricing": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.8
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 338,
+          "costUsd": 0.000032046,
+          "category": "refund",
+          "categoryProbs": {
+            "location": 0,
+            "group_size": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "cancel": 0,
+            "other": 0,
+            "weather": 0,
+            "refund": 1,
+            "pricing": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.79
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 578,
+          "costUsd": 0.000032046,
+          "category": "refund",
+          "categoryProbs": {
+            "location": 0,
+            "weather": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "cancel": 0,
+            "refund": 1,
+            "other": 0,
+            "group_size": 0,
+            "reschedule": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.8
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1971,
+          "costUsd": 0.003402,
+          "category": "refund",
+          "urgency": 0.4,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1895,
+          "costUsd": 0.003402,
+          "category": "refund",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1831,
+          "costUsd": 0.003402,
+          "category": "refund",
+          "urgency": 0.4,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "s16",
+    "lang": "en",
+    "hard": false,
+    "text": "Where exactly is the meeting point for the Fushimi Inari shoot? Is it at the main gate?",
+    "expected": {
+      "category": "location",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 407,
+          "costUsd": 0.000032004,
+          "category": "location",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "location": 1,
+            "other": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "cancel": 0
+          },
+          "urgency": 0.45,
+          "urgencyProbs": {
+            "0": 0.55,
+            "1": 0.45
+          },
+          "needsHumanProb": 0.24
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 352,
+          "costUsd": 0.000032004,
+          "category": "location",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "location": 1,
+            "cancel": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "refund": 0
+          },
+          "urgency": 0.47,
+          "urgencyProbs": {
+            "0": 0.53,
+            "1": 0.47
+          },
+          "needsHumanProb": 0.24
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 326,
+          "costUsd": 0.000032004,
+          "category": "location",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "refund": 0,
+            "weather": 0,
+            "group_size": 0,
+            "cancel": 0,
+            "location": 1,
+            "pricing": 0,
+            "other": 0,
+            "reschedule": 0
+          },
+          "urgency": 0.46,
+          "urgencyProbs": {
+            "0": 0.54,
+            "1": 0.46
+          },
+          "needsHumanProb": 0.25
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1795,
+          "costUsd": 0.003384,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1938,
+          "costUsd": 0.003384,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2071,
+          "costUsd": 0.003384,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s17",
+    "lang": "en",
+    "hard": false,
+    "text": "Can we do the shoot at the Arashiyama bamboo forest instead of Gion? Is that area covered?",
+    "expected": {
+      "category": "location",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 471,
+          "costUsd": 0.000032046,
+          "category": "location",
+          "categoryProbs": {
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "other": 0,
+            "refund": 0,
+            "location": 1,
+            "late_arrival": 0,
+            "cancel": 0
+          },
+          "urgency": 0.06,
+          "urgencyProbs": {
+            "0": 0.94,
+            "1": 0.06
+          },
+          "needsHumanProb": 0.42
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 358,
+          "costUsd": 0.000032046,
+          "category": "location",
+          "categoryProbs": {
+            "reschedule": 0,
+            "location": 1,
+            "other": 0,
+            "cancel": 0,
+            "group_size": 0,
+            "weather": 0,
+            "pricing": 0,
+            "refund": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0.06,
+          "urgencyProbs": {
+            "0": 0.94,
+            "1": 0.06
+          },
+          "needsHumanProb": 0.4
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 411,
+          "costUsd": 0.000032046,
+          "category": "location",
+          "categoryProbs": {
+            "group_size": 0,
+            "reschedule": 0,
+            "refund": 0,
+            "location": 1,
+            "other": 0,
+            "weather": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "cancel": 0
+          },
+          "urgency": 0.06,
+          "urgencyProbs": {
+            "0": 0.94,
+            "1": 0.06
+          },
+          "needsHumanProb": 0.39
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1926,
+          "costUsd": 0.00339,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2811,
+          "costUsd": 0.00339,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2130,
+          "costUsd": 0.00339,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s18",
+    "lang": "zh",
+    "hard": false,
+    "text": "请问浅草的拍摄在哪里集合？附近有地铁站吗？",
+    "expected": {
+      "category": "location",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 369,
+          "costUsd": 0.000031962,
+          "category": "location",
+          "categoryProbs": {
+            "pricing": 0,
+            "weather": 0,
+            "group_size": 0,
+            "reschedule": 0,
+            "location": 1,
+            "cancel": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "other": 0
+          },
+          "urgency": 0.11,
+          "urgencyProbs": {
+            "0": 0.89,
+            "1": 0.11
+          },
+          "needsHumanProb": 0.37
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 553,
+          "costUsd": 0.000031962,
+          "category": "location",
+          "categoryProbs": {
+            "group_size": 0,
+            "other": 0,
+            "late_arrival": 0,
+            "location": 1,
+            "pricing": 0,
+            "reschedule": 0,
+            "weather": 0,
+            "refund": 0,
+            "cancel": 0
+          },
+          "urgency": 0.12,
+          "urgencyProbs": {
+            "0": 0.88,
+            "1": 0.12
+          },
+          "needsHumanProb": 0.36
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 457,
+          "costUsd": 0.000031962,
+          "category": "location",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "refund": 0,
+            "location": 1,
+            "weather": 0,
+            "cancel": 0,
+            "reschedule": 0,
+            "pricing": 0
+          },
+          "urgency": 0.11,
+          "urgencyProbs": {
+            "0": 0.89,
+            "1": 0.11
+          },
+          "needsHumanProb": 0.35
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2020,
+          "costUsd": 0.003393,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2108,
+          "costUsd": 0.003393,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1933,
+          "costUsd": 0.003393,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s19",
+    "lang": "ja",
+    "hard": false,
+    "text": "撮影場所はお台場も選べますか？夜景を撮りたいです。",
+    "expected": {
+      "category": "location",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 383,
+          "costUsd": 0.00003213,
+          "category": "location",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "location": 1,
+            "group_size": 0,
+            "weather": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "other": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.23
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 342,
+          "costUsd": 0.00003213,
+          "category": "location",
+          "categoryProbs": {
+            "other": 0,
+            "cancel": 0,
+            "group_size": 0,
+            "late_arrival": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "refund": 0,
+            "pricing": 0,
+            "location": 1
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.24
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 405,
+          "costUsd": 0.00003213,
+          "category": "location",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "weather": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "location": 1,
+            "cancel": 0,
+            "other": 0,
+            "reschedule": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.23
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2575,
+          "costUsd": 0.00339,
+          "category": "location",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2064,
+          "costUsd": 0.00339,
+          "category": "location",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1642,
+          "costUsd": 0.00345,
+          "category": "location",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s20",
+    "lang": "en",
+    "hard": false,
+    "text": "Do you offer shoots at Lake Kawaguchiko near Mt. Fuji, or only in Tokyo?",
+    "expected": {
+      "category": "location",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 318,
+          "costUsd": 0.00003192,
+          "category": "location",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 1,
+            "reschedule": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "cancel": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.17
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 399,
+          "costUsd": 0.00003192,
+          "category": "location",
+          "categoryProbs": {
+            "reschedule": 0,
+            "cancel": 0,
+            "other": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 1,
+            "weather": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.18
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 358,
+          "costUsd": 0.00003192,
+          "category": "location",
+          "categoryProbs": {
+            "location": 1,
+            "cancel": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "reschedule": 0,
+            "other": 0,
+            "weather": 0,
+            "refund": 0,
+            "pricing": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.17
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1678,
+          "costUsd": 0.003381,
+          "category": "location",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1906,
+          "costUsd": 0.003381,
+          "category": "location",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1947,
+          "costUsd": 0.003381,
+          "category": "location",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s21",
+    "lang": "en",
+    "hard": false,
+    "text": "How much is the 2-hour plan for a family of four? Does it include all edited photos?",
+    "expected": {
+      "category": "pricing",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 365,
+          "costUsd": 0.000031962,
+          "category": "pricing",
+          "categoryProbs": {
+            "weather": 0,
+            "pricing": 1,
+            "group_size": 0,
+            "reschedule": 0,
+            "location": 0,
+            "late_arrival": 0,
+            "other": 0,
+            "cancel": 0,
+            "refund": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.32
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 455,
+          "costUsd": 0.000031962,
+          "category": "pricing",
+          "categoryProbs": {
+            "reschedule": 0,
+            "pricing": 1,
+            "cancel": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "location": 0,
+            "weather": 0,
+            "other": 0,
+            "refund": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.34
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 505,
+          "costUsd": 0.000031962,
+          "category": "pricing",
+          "categoryProbs": {
+            "weather": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "pricing": 1,
+            "cancel": 0,
+            "location": 0,
+            "refund": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.33
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1863,
+          "costUsd": 0.003378,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2096,
+          "costUsd": 0.003378,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1949,
+          "costUsd": 0.003378,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s22",
+    "lang": "en",
+    "hard": false,
+    "text": "Is there an extra charge for shooting on weekends or at sunrise?",
+    "expected": {
+      "category": "pricing",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 387,
+          "costUsd": 0.000031626,
+          "category": "pricing",
+          "categoryProbs": {
+            "reschedule": 0,
+            "other": 0,
+            "pricing": 1,
+            "cancel": 0,
+            "group_size": 0,
+            "weather": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "refund": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.27
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 320,
+          "costUsd": 0.000031626,
+          "category": "pricing",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "pricing": 1,
+            "cancel": 0,
+            "reschedule": 0,
+            "weather": 0,
+            "group_size": 0,
+            "other": 0,
+            "refund": 0,
+            "location": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.27
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 394,
+          "costUsd": 0.000031626,
+          "category": "pricing",
+          "categoryProbs": {
+            "weather": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "pricing": 1,
+            "cancel": 0,
+            "location": 0,
+            "refund": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.25
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1897,
+          "costUsd": 0.003369,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1988,
+          "costUsd": 0.003354,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1904,
+          "costUsd": 0.003354,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s23",
+    "lang": "zh",
+    "hard": false,
+    "text": "请问情侣拍摄套餐多少钱？包括和服租赁吗？",
+    "expected": {
+      "category": "pricing",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 434,
+          "costUsd": 0.00003192,
+          "category": "pricing",
+          "categoryProbs": {
+            "pricing": 1,
+            "refund": 0,
+            "location": 0,
+            "cancel": 0,
+            "weather": 0,
+            "other": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.23
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 333,
+          "costUsd": 0.00003192,
+          "category": "pricing",
+          "categoryProbs": {
+            "weather": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "refund": 0,
+            "cancel": 0,
+            "pricing": 1,
+            "other": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.22
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 478,
+          "costUsd": 0.00003192,
+          "category": "pricing",
+          "categoryProbs": {
+            "group_size": 0,
+            "location": 0,
+            "late_arrival": 0,
+            "other": 0,
+            "reschedule": 0,
+            "pricing": 1,
+            "weather": 0,
+            "refund": 0,
+            "cancel": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.23
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1863,
+          "costUsd": 0.003393,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1760,
+          "costUsd": 0.003393,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1949,
+          "costUsd": 0.003393,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s24",
+    "lang": "ko",
+    "hard": false,
+    "text": "가족 촬영 1시간 플랜 가격이 얼마인가요? 사진은 몇 장 받을 수 있나요?",
+    "expected": {
+      "category": "pricing",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 349,
+          "costUsd": 0.00003234,
+          "category": "pricing",
+          "categoryProbs": {
+            "pricing": 1,
+            "refund": 0,
+            "location": 0,
+            "cancel": 0,
+            "weather": 0,
+            "group_size": 0,
+            "reschedule": 0,
+            "other": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.26
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 374,
+          "costUsd": 0.00003234,
+          "category": "pricing",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "location": 0,
+            "group_size": 0,
+            "weather": 0,
+            "pricing": 1,
+            "cancel": 0,
+            "other": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.27
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 324,
+          "costUsd": 0.00003234,
+          "category": "pricing",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "cancel": 0,
+            "location": 0,
+            "pricing": 1,
+            "late_arrival": 0,
+            "refund": 0,
+            "group_size": 0,
+            "reschedule": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.27
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1496,
+          "costUsd": 0.003447,
+          "category": "pricing",
+          "urgency": 0.1,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2571,
+          "costUsd": 0.003447,
+          "category": "pricing",
+          "urgency": 0.1,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1786,
+          "costUsd": 0.003447,
+          "category": "pricing",
+          "urgency": 0.1,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s25",
+    "lang": "ja",
+    "hard": false,
+    "text": "プロポーズ撮影のプランの料金を教えてください。",
+    "expected": {
+      "category": "pricing",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 350,
+          "costUsd": 0.000032046,
+          "category": "pricing",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "location": 0,
+            "weather": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "cancel": 0,
+            "group_size": 0,
+            "pricing": 1
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.18
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 356,
+          "costUsd": 0.000032046,
+          "category": "pricing",
+          "categoryProbs": {
+            "weather": 0,
+            "group_size": 0,
+            "late_arrival": 0,
+            "pricing": 1,
+            "cancel": 0,
+            "location": 0,
+            "refund": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.19
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 395,
+          "costUsd": 0.000032046,
+          "category": "pricing",
+          "categoryProbs": {
+            "group_size": 0,
+            "other": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "reschedule": 0,
+            "pricing": 1,
+            "weather": 0,
+            "refund": 0,
+            "cancel": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.17
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2063,
+          "costUsd": 0.003375,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1802,
+          "costUsd": 0.003375,
+          "category": "pricing",
+          "urgency": 0.2,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1854,
+          "costUsd": 0.003375,
+          "category": "pricing",
+          "urgency": 0.1,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s26",
+    "lang": "en",
+    "hard": false,
+    "text": "My parents decided to join us, so we'll be 5 people instead of 3 on Nov 12. Is that okay?",
+    "expected": {
+      "category": "group_size",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 453,
+          "costUsd": 0.000032256,
+          "category": "group_size",
+          "categoryProbs": {
+            "location": 0,
+            "reschedule": 0,
+            "late_arrival": 0,
+            "cancel": 0,
+            "group_size": 1,
+            "other": 0,
+            "weather": 0,
+            "refund": 0,
+            "pricing": 0
+          },
+          "urgency": 0.03,
+          "urgencyProbs": {
+            "0": 0.97,
+            "1": 0.03
+          },
+          "needsHumanProb": 0.36
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 315,
+          "costUsd": 0.000032256,
+          "category": "group_size",
+          "categoryProbs": {
+            "weather": 0,
+            "late_arrival": 0,
+            "refund": 0,
+            "group_size": 1,
+            "pricing": 0,
+            "location": 0,
+            "cancel": 0,
+            "other": 0,
+            "reschedule": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.38
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 583,
+          "costUsd": 0.000032256,
+          "category": "group_size",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "reschedule": 0,
+            "location": 0,
+            "other": 0,
+            "pricing": 0,
+            "weather": 0,
+            "group_size": 1,
+            "refund": 0,
+            "cancel": 0
+          },
+          "urgency": 0.03,
+          "urgencyProbs": {
+            "0": 0.97,
+            "1": 0.03
+          },
+          "needsHumanProb": 0.38
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1917,
+          "costUsd": 0.003429,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1789,
+          "costUsd": 0.003429,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2029,
+          "costUsd": 0.003429,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s27",
+    "lang": "en",
+    "hard": false,
+    "text": "One of our friends can't come anymore, so our group will be 3 instead of 4 for the Oct 19 shoot.",
+    "expected": {
+      "category": "group_size",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 359,
+          "costUsd": 0.000032256,
+          "category": "group_size",
+          "categoryProbs": {
+            "weather": 0,
+            "late_arrival": 0,
+            "group_size": 1,
+            "pricing": 0,
+            "cancel": 0,
+            "location": 0,
+            "refund": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0.08,
+          "urgencyProbs": {
+            "0": 0.92,
+            "1": 0.08
+          },
+          "needsHumanProb": 0.32
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 449,
+          "costUsd": 0.000032256,
+          "category": "group_size",
+          "categoryProbs": {
+            "cancel": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "location": 0,
+            "other": 0,
+            "refund": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "group_size": 1
+          },
+          "urgency": 0.08,
+          "urgencyProbs": {
+            "0": 0.92,
+            "1": 0.08
+          },
+          "needsHumanProb": 0.31
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 351,
+          "costUsd": 0.000032256,
+          "category": "group_size",
+          "categoryProbs": {
+            "refund": 0,
+            "other": 0,
+            "pricing": 0,
+            "location": 0,
+            "group_size": 1,
+            "weather": 0,
+            "late_arrival": 0,
+            "cancel": 0,
+            "reschedule": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.3
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2153,
+          "costUsd": 0.003432,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2171,
+          "costUsd": 0.003432,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1978,
+          "costUsd": 0.003432,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s28",
+    "lang": "zh",
+    "hard": false,
+    "text": "我们原来预约是2个人，现在想加上我父母，一共4个人，可以吗？",
+    "expected": {
+      "category": "group_size",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 335,
+          "costUsd": 0.000032256,
+          "category": "group_size",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 1,
+            "cancel": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "refund": 0,
+            "pricing": 0,
+            "location": 0
+          },
+          "urgency": 0.04,
+          "urgencyProbs": {
+            "0": 0.96,
+            "1": 0.04
+          },
+          "needsHumanProb": 0.31
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 404,
+          "costUsd": 0.000032256,
+          "category": "group_size",
+          "categoryProbs": {
+            "other": 0,
+            "weather": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "reschedule": 0,
+            "cancel": 0,
+            "refund": 0,
+            "group_size": 1
+          },
+          "urgency": 0.04,
+          "urgencyProbs": {
+            "0": 0.96,
+            "1": 0.04
+          },
+          "needsHumanProb": 0.35
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 527,
+          "costUsd": 0.000032256,
+          "category": "group_size",
+          "categoryProbs": {
+            "reschedule": 0,
+            "location": 0,
+            "other": 0,
+            "cancel": 0,
+            "group_size": 1,
+            "weather": 0,
+            "pricing": 0,
+            "refund": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0.05,
+          "urgencyProbs": {
+            "0": 0.95,
+            "1": 0.05
+          },
+          "needsHumanProb": 0.35
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 7997,
+          "costUsd": 0.003435,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1857,
+          "costUsd": 0.003435,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1957,
+          "costUsd": 0.003435,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s29",
+    "lang": "ja",
+    "hard": false,
+    "text": "10月27日の撮影ですが、子どもが1人増えて大人2名・子ども2名になりました。",
+    "expected": {
+      "category": "group_size",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 400,
+          "costUsd": 0.000032718,
+          "category": "group_size",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "location": 0,
+            "weather": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "cancel": 0,
+            "group_size": 1,
+            "pricing": 0
+          },
+          "urgency": 0.1,
+          "urgencyProbs": {
+            "0": 0.9,
+            "1": 0.1
+          },
+          "needsHumanProb": 0.37
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 401,
+          "costUsd": 0.000032718,
+          "category": "group_size",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 1,
+            "refund": 0,
+            "location": 0,
+            "weather": 0,
+            "cancel": 0,
+            "reschedule": 0,
+            "pricing": 0
+          },
+          "urgency": 0.09,
+          "urgencyProbs": {
+            "0": 0.91,
+            "1": 0.09
+          },
+          "needsHumanProb": 0.36
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 468,
+          "costUsd": 0.000032718,
+          "category": "group_size",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "location": 0,
+            "cancel": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "group_size": 1,
+            "refund": 0
+          },
+          "urgency": 0.09,
+          "urgencyProbs": {
+            "0": 0.91,
+            "1": 0.09
+          },
+          "needsHumanProb": 0.38
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2038,
+          "costUsd": 0.003447,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1731,
+          "costUsd": 0.003447,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1910,
+          "costUsd": 0.003447,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s30",
+    "lang": "en",
+    "hard": false,
+    "text": "Can we add 2 more people to our group booking for the end of the month?",
+    "expected": {
+      "category": "group_size",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 368,
+          "costUsd": 0.000031836,
+          "category": "group_size",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "other": 0,
+            "reschedule": 0,
+            "pricing": 0,
+            "weather": 0,
+            "group_size": 1,
+            "location": 0,
+            "cancel": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.32
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 338,
+          "costUsd": 0.000031836,
+          "category": "group_size",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "reschedule": 0,
+            "other": 0,
+            "location": 0,
+            "group_size": 1,
+            "weather": 0,
+            "pricing": 0,
+            "refund": 0,
+            "cancel": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.33
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 371,
+          "costUsd": 0.000031836,
+          "category": "group_size",
+          "categoryProbs": {
+            "pricing": 0,
+            "refund": 0,
+            "location": 0,
+            "cancel": 0,
+            "weather": 0,
+            "other": 0,
+            "reschedule": 0,
+            "group_size": 1,
+            "late_arrival": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.31
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2391,
+          "costUsd": 0.003399,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1681,
+          "costUsd": 0.003399,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1889,
+          "costUsd": 0.003399,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s31",
+    "lang": "en",
+    "hard": false,
+    "text": "Hi, our train is delayed, we'll be about 15 minutes late to the meeting point. So sorry!",
+    "expected": {
+      "category": "late_arrival",
+      "urgency": "high",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 403,
+          "costUsd": 0.000032088,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "weather": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "reschedule": 0,
+            "location": 0,
+            "late_arrival": 1,
+            "other": 0,
+            "cancel": 0,
+            "refund": 0
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.43
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 387,
+          "costUsd": 0.000032088,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "cancel": 0,
+            "reschedule": 0,
+            "other": 0,
+            "location": 0,
+            "weather": 0,
+            "refund": 0,
+            "pricing": 0,
+            "late_arrival": 1,
+            "group_size": 0
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.43
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 350,
+          "costUsd": 0.000032088,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "location": 0,
+            "reschedule": 0,
+            "late_arrival": 1,
+            "group_size": 0,
+            "cancel": 0,
+            "other": 0,
+            "weather": 0,
+            "refund": 0,
+            "pricing": 0
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.41
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2079,
+          "costUsd": 0.003414,
+          "category": "late_arrival",
+          "urgency": 0.9,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1933,
+          "costUsd": 0.003414,
+          "category": "late_arrival",
+          "urgency": 0.85,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2118,
+          "costUsd": 0.003414,
+          "category": "late_arrival",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s32",
+    "lang": "en",
+    "hard": false,
+    "text": "Running late! Stuck in traffic, ETA 20 min. Please ask the photographer to wait.",
+    "expected": {
+      "category": "late_arrival",
+      "urgency": "high",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 334,
+          "costUsd": 0.000031962,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "group_size": 0,
+            "location": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 1,
+            "weather": 0,
+            "reschedule": 0
+          },
+          "urgency": 1,
+          "urgencyProbs": {
+            "0": 0,
+            "1": 1
+          },
+          "needsHumanProb": 0.37
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 354,
+          "costUsd": 0.000031962,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "weather": 0,
+            "late_arrival": 1,
+            "group_size": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "location": 0,
+            "refund": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 1,
+          "urgencyProbs": {
+            "0": 0,
+            "1": 1
+          },
+          "needsHumanProb": 0.36
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 353,
+          "costUsd": 0.000031962,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "refund": 0,
+            "other": 0,
+            "pricing": 0,
+            "location": 0,
+            "late_arrival": 1,
+            "weather": 0,
+            "cancel": 0,
+            "group_size": 0,
+            "reschedule": 0
+          },
+          "urgency": 1,
+          "urgencyProbs": {
+            "0": 0,
+            "1": 1
+          },
+          "needsHumanProb": 0.39
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1762,
+          "costUsd": 0.003408,
+          "category": "late_arrival",
+          "urgency": 0.95,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1842,
+          "costUsd": 0.003408,
+          "category": "late_arrival",
+          "urgency": 0.95,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1880,
+          "costUsd": 0.003408,
+          "category": "late_arrival",
+          "urgency": 0.95,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "s33",
+    "lang": "zh",
+    "hard": false,
+    "text": "不好意思，我们迷路了，大概晚到10分钟。",
+    "expected": {
+      "category": "late_arrival",
+      "urgency": "high",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 364,
+          "costUsd": 0.000031878,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "location": 0,
+            "weather": 0,
+            "late_arrival": 1,
+            "reschedule": 0,
+            "group_size": 0,
+            "cancel": 0,
+            "pricing": 0
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.4
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 352,
+          "costUsd": 0.000031878,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "group_size": 0,
+            "location": 0,
+            "late_arrival": 1,
+            "other": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "weather": 0,
+            "refund": 0,
+            "cancel": 0
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.41
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 524,
+          "costUsd": 0.000031878,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "other": 0,
+            "cancel": 0,
+            "group_size": 0,
+            "late_arrival": 1,
+            "weather": 0,
+            "reschedule": 0,
+            "refund": 0,
+            "pricing": 0,
+            "location": 0
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.39
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1801,
+          "costUsd": 0.003408,
+          "category": "late_arrival",
+          "urgency": 0.9,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1871,
+          "costUsd": 0.003408,
+          "category": "late_arrival",
+          "urgency": 0.9,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2094,
+          "costUsd": 0.003408,
+          "category": "late_arrival",
+          "urgency": 0.9,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s34",
+    "lang": "ko",
+    "hard": false,
+    "text": "지하철이 지연돼서 15분 정도 늦을 것 같아요. 죄송합니다!",
+    "expected": {
+      "category": "late_arrival",
+      "urgency": "high",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 308,
+          "costUsd": 0.000032256,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "weather": 0,
+            "group_size": 0,
+            "late_arrival": 1,
+            "pricing": 0,
+            "cancel": 0,
+            "location": 0,
+            "refund": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0.85,
+          "urgencyProbs": {
+            "0": 0.15,
+            "1": 0.85
+          },
+          "needsHumanProb": 0.57
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 517,
+          "costUsd": 0.000032256,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "reschedule": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "late_arrival": 1,
+            "weather": 0,
+            "group_size": 0,
+            "other": 0,
+            "location": 0,
+            "refund": 0
+          },
+          "urgency": 0.86,
+          "urgencyProbs": {
+            "0": 0.14,
+            "1": 0.86
+          },
+          "needsHumanProb": 0.58
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 392,
+          "costUsd": 0.000032256,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "group_size": 0,
+            "weather": 0,
+            "cancel": 0,
+            "refund": 0,
+            "late_arrival": 1,
+            "location": 0,
+            "other": 0,
+            "reschedule": 0,
+            "pricing": 0
+          },
+          "urgency": 0.85,
+          "urgencyProbs": {
+            "0": 0.15,
+            "1": 0.85
+          },
+          "needsHumanProb": 0.58
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1852,
+          "costUsd": 0.003507,
+          "category": "late_arrival",
+          "urgency": 0.85,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2498,
+          "costUsd": 0.003447,
+          "category": "late_arrival",
+          "urgency": 0.9,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1850,
+          "costUsd": 0.003447,
+          "category": "late_arrival",
+          "urgency": 0.85,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s35",
+    "lang": "ja",
+    "hard": false,
+    "text": "すみません、電車が遅れていて10分ほど遅れます。",
+    "expected": {
+      "category": "late_arrival",
+      "urgency": "high",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 470,
+          "costUsd": 0.000032172,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "late_arrival": 1,
+            "reschedule": 0,
+            "location": 0,
+            "other": 0,
+            "refund": 0,
+            "weather": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "cancel": 0
+          },
+          "urgency": 0.95,
+          "urgencyProbs": {
+            "0": 0.05,
+            "1": 0.95
+          },
+          "needsHumanProb": 0.51
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 351,
+          "costUsd": 0.000032172,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 1,
+            "location": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "cancel": 0
+          },
+          "urgency": 0.94,
+          "urgencyProbs": {
+            "0": 0.06,
+            "1": 0.94
+          },
+          "needsHumanProb": 0.51
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 322,
+          "costUsd": 0.000032172,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "location": 0,
+            "cancel": 0,
+            "pricing": 0,
+            "late_arrival": 1,
+            "reschedule": 0,
+            "group_size": 0,
+            "refund": 0
+          },
+          "urgency": 0.96,
+          "urgencyProbs": {
+            "0": 0.04,
+            "1": 0.96
+          },
+          "needsHumanProb": 0.47
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2059,
+          "costUsd": 0.003408,
+          "category": "late_arrival",
+          "urgency": 0.9,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1838,
+          "costUsd": 0.003408,
+          "category": "late_arrival",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2025,
+          "costUsd": 0.003408,
+          "category": "late_arrival",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s36",
+    "lang": "en",
+    "hard": false,
+    "text": "The forecast says rain for our shoot tomorrow. What happens if it rains? Will it be postponed?",
+    "expected": {
+      "category": "weather",
+      "urgency": "high",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 335,
+          "costUsd": 0.00003192,
+          "category": "weather",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "location": 0,
+            "refund": 0,
+            "weather": 1,
+            "cancel": 0,
+            "reschedule": 0,
+            "pricing": 0
+          },
+          "urgency": 0.94,
+          "urgencyProbs": {
+            "0": 0.06,
+            "1": 0.94
+          },
+          "needsHumanProb": 0.29
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 339,
+          "costUsd": 0.00003192,
+          "category": "weather",
+          "categoryProbs": {
+            "location": 0,
+            "group_size": 0,
+            "late_arrival": 0,
+            "cancel": 0,
+            "reschedule": 0,
+            "other": 0,
+            "weather": 1,
+            "refund": 0,
+            "pricing": 0
+          },
+          "urgency": 0.95,
+          "urgencyProbs": {
+            "0": 0.05,
+            "1": 0.95
+          },
+          "needsHumanProb": 0.3
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1605,
+          "costUsd": 0.00003192,
+          "category": "weather",
+          "categoryProbs": {
+            "other": 0,
+            "weather": 1,
+            "late_arrival": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "location": 0,
+            "cancel": 0,
+            "refund": 0,
+            "group_size": 0
+          },
+          "urgency": 0.93,
+          "urgencyProbs": {
+            "0": 0.07,
+            "1": 0.93
+          },
+          "needsHumanProb": 0.3
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1614,
+          "costUsd": 0.003378,
+          "category": "weather",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1501,
+          "costUsd": 0.003378,
+          "category": "weather",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1974,
+          "costUsd": 0.003378,
+          "category": "weather",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s37",
+    "lang": "en",
+    "hard": false,
+    "text": "What's your policy if it's raining on the shoot day? Do you still shoot in light rain?",
+    "expected": {
+      "category": "weather",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 330,
+          "costUsd": 0.000031962,
+          "category": "weather",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "refund": 0,
+            "location": 0,
+            "weather": 1,
+            "cancel": 0,
+            "reschedule": 0,
+            "pricing": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.3
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 478,
+          "costUsd": 0.000031962,
+          "category": "weather",
+          "categoryProbs": {
+            "reschedule": 0,
+            "location": 0,
+            "other": 0,
+            "cancel": 0,
+            "refund": 0,
+            "weather": 1,
+            "pricing": 0,
+            "group_size": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0.08,
+          "urgencyProbs": {
+            "0": 0.92,
+            "1": 0.08
+          },
+          "needsHumanProb": 0.29
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 502,
+          "costUsd": 0.000031962,
+          "category": "weather",
+          "categoryProbs": {
+            "weather": 1,
+            "reschedule": 0,
+            "late_arrival": 0,
+            "refund": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "location": 0,
+            "other": 0,
+            "cancel": 0
+          },
+          "urgency": 0.08,
+          "urgencyProbs": {
+            "0": 0.92,
+            "1": 0.08
+          },
+          "needsHumanProb": 0.3
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1741,
+          "costUsd": 0.003378,
+          "category": "weather",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1844,
+          "costUsd": 0.003378,
+          "category": "weather",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2333,
+          "costUsd": 0.003378,
+          "category": "weather",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s38",
+    "lang": "zh",
+    "hard": false,
+    "text": "明天京都下雨的话，拍摄还会照常进行吗？",
+    "expected": {
+      "category": "weather",
+      "urgency": "high",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 347,
+          "costUsd": 0.000031878,
+          "category": "weather",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "other": 0,
+            "reschedule": 0,
+            "pricing": 0,
+            "weather": 1,
+            "group_size": 0,
+            "location": 0,
+            "cancel": 0
+          },
+          "urgency": 0.28,
+          "urgencyProbs": {
+            "0": 0.72,
+            "1": 0.28
+          },
+          "needsHumanProb": 0.33
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 514,
+          "costUsd": 0.000031878,
+          "category": "weather",
+          "categoryProbs": {
+            "weather": 1,
+            "late_arrival": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "location": 0,
+            "refund": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0.27,
+          "urgencyProbs": {
+            "0": 0.73,
+            "1": 0.27
+          },
+          "needsHumanProb": 0.31
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 344,
+          "costUsd": 0.000031878,
+          "category": "weather",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "other": 0,
+            "group_size": 0,
+            "cancel": 0,
+            "weather": 1,
+            "reschedule": 0,
+            "refund": 0,
+            "pricing": 0,
+            "location": 0
+          },
+          "urgency": 0.3,
+          "urgencyProbs": {
+            "0": 0.7,
+            "1": 0.3
+          },
+          "needsHumanProb": 0.31
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1878,
+          "costUsd": 0.003381,
+          "category": "weather",
+          "urgency": 0.7,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1942,
+          "costUsd": 0.003381,
+          "category": "weather",
+          "urgency": 0.7,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1923,
+          "costUsd": 0.003381,
+          "category": "weather",
+          "urgency": 0.7,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s39",
+    "lang": "ko",
+    "hard": false,
+    "text": "비가 오면 촬영은 어떻게 되나요? 다음 주 예약이에요.",
+    "expected": {
+      "category": "weather",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 519,
+          "costUsd": 0.000031962,
+          "category": "weather",
+          "categoryProbs": {
+            "pricing": 0,
+            "weather": 1,
+            "reschedule": 0,
+            "group_size": 0,
+            "location": 0,
+            "cancel": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "other": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.24
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 445,
+          "costUsd": 0.000031962,
+          "category": "weather",
+          "categoryProbs": {
+            "reschedule": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "group_size": 0,
+            "other": 0,
+            "location": 0,
+            "weather": 1
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.24
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 427,
+          "costUsd": 0.000031962,
+          "category": "weather",
+          "categoryProbs": {
+            "refund": 0,
+            "reschedule": 0,
+            "late_arrival": 0,
+            "cancel": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "other": 0,
+            "location": 0,
+            "weather": 1
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.23
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2099,
+          "costUsd": 0.003423,
+          "category": "weather",
+          "urgency": 0.4,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1755,
+          "costUsd": 0.003423,
+          "category": "weather",
+          "urgency": 0.4,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2021,
+          "costUsd": 0.003408,
+          "category": "weather",
+          "urgency": 0.4,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "s40",
+    "lang": "ja",
+    "hard": false,
+    "text": "雨天の場合の撮影はどうなりますか？来月予約しています。",
+    "expected": {
+      "category": "weather",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 367,
+          "costUsd": 0.000032214,
+          "category": "weather",
+          "categoryProbs": {
+            "group_size": 0,
+            "refund": 0,
+            "cancel": 0,
+            "weather": 1,
+            "location": 0,
+            "other": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "pricing": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.35
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 342,
+          "costUsd": 0.000032214,
+          "category": "weather",
+          "categoryProbs": {
+            "weather": 1,
+            "other": 0,
+            "location": 0,
+            "cancel": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "refund": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.34
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 343,
+          "costUsd": 0.000032214,
+          "category": "weather",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "location": 0,
+            "group_size": 0,
+            "cancel": 0,
+            "pricing": 0,
+            "weather": 1,
+            "other": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.35
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1460,
+          "costUsd": 0.003387,
+          "category": "weather",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1932,
+          "costUsd": 0.003387,
+          "category": "weather",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1918,
+          "costUsd": 0.003387,
+          "category": "weather",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "h01",
+    "lang": "ja",
+    "hard": true,
+    "text": "台風で飛行機が飛ばないので、明日の撮影を土曜に変えたいです。",
+    "expected": {
+      "category": "reschedule",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "alsoAcceptable": [
+      "weather"
+    ],
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 393,
+          "costUsd": 0.00003234,
+          "category": "reschedule",
+          "categoryProbs": {
+            "group_size": 0,
+            "location": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "weather": 0,
+            "reschedule": 1
+          },
+          "urgency": 0.86,
+          "urgencyProbs": {
+            "0": 0.14,
+            "1": 0.86
+          },
+          "needsHumanProb": 0.43
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 340,
+          "costUsd": 0.00003234,
+          "category": "reschedule",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "reschedule": 1,
+            "location": 0,
+            "other": 0,
+            "group_size": 0,
+            "weather": 0,
+            "refund": 0,
+            "pricing": 0,
+            "cancel": 0
+          },
+          "urgency": 0.88,
+          "urgencyProbs": {
+            "0": 0.12,
+            "1": 0.88
+          },
+          "needsHumanProb": 0.39
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 352,
+          "costUsd": 0.00003234,
+          "category": "reschedule",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "cancel": 0,
+            "location": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "refund": 0,
+            "group_size": 0,
+            "reschedule": 1
+          },
+          "urgency": 0.86,
+          "urgencyProbs": {
+            "0": 0.14,
+            "1": 0.86
+          },
+          "needsHumanProb": 0.44
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1710,
+          "costUsd": 0.003438,
+          "category": "reschedule",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1758,
+          "costUsd": 0.003438,
+          "category": "reschedule",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1467,
+          "costUsd": 0.003498,
+          "category": "reschedule",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "h02",
+    "lang": "en",
+    "hard": true,
+    "text": "Typhoon warning for Saturday. If we can't shoot, do we get our money back or can we move it?",
+    "expected": {
+      "category": "weather",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "alsoAcceptable": [
+      "refund",
+      "reschedule"
+    ],
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 346,
+          "costUsd": 0.00003213,
+          "category": "weather",
+          "categoryProbs": {
+            "reschedule": 0.02,
+            "location": 0,
+            "other": 0,
+            "cancel": 0,
+            "group_size": 0,
+            "refund": 0.34,
+            "pricing": 0,
+            "weather": 0.64,
+            "late_arrival": 0
+          },
+          "urgency": 0.55,
+          "urgencyProbs": {
+            "0": 0.45,
+            "1": 0.55
+          },
+          "needsHumanProb": 0.77
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 322,
+          "costUsd": 0.00003213,
+          "category": "weather",
+          "categoryProbs": {
+            "weather": 0.62,
+            "other": 0,
+            "cancel": 0,
+            "location": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "reschedule": 0.02,
+            "group_size": 0,
+            "refund": 0.36
+          },
+          "urgency": 0.52,
+          "urgencyProbs": {
+            "0": 0.48,
+            "1": 0.52
+          },
+          "needsHumanProb": 0.78
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 335,
+          "costUsd": 0.00003213,
+          "category": "weather",
+          "categoryProbs": {
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0.65,
+            "refund": 0.33,
+            "other": 0,
+            "reschedule": 0.02,
+            "location": 0,
+            "late_arrival": 0,
+            "cancel": 0
+          },
+          "urgency": 0.53,
+          "urgencyProbs": {
+            "0": 0.47,
+            "1": 0.53
+          },
+          "needsHumanProb": 0.8
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1905,
+          "costUsd": 0.003387,
+          "category": "weather",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2963,
+          "costUsd": 0.003402,
+          "category": "weather",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1877,
+          "costUsd": 0.003387,
+          "category": "weather",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h03",
+    "lang": "en",
+    "hard": true,
+    "text": "Worst experience ever. What is going on with you people??",
+    "expected": {
+      "category": "other",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 717,
+          "costUsd": 0.000031626,
+          "category": "other",
+          "categoryProbs": {
+            "group_size": 0,
+            "refund": 0,
+            "other": 1,
+            "location": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "pricing": 0,
+            "late_arrival": 0,
+            "cancel": 0
+          },
+          "urgency": 0.98,
+          "urgencyProbs": {
+            "0": 0.02,
+            "1": 0.98
+          },
+          "needsHumanProb": 0.94
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1248,
+          "costUsd": 0.000031626,
+          "category": "other",
+          "categoryProbs": {
+            "reschedule": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "location": 0,
+            "group_size": 0,
+            "weather": 0,
+            "other": 1
+          },
+          "urgency": 0.98,
+          "urgencyProbs": {
+            "0": 0.02,
+            "1": 0.98
+          },
+          "needsHumanProb": 0.94
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 367,
+          "costUsd": 0.000031626,
+          "category": "other",
+          "categoryProbs": {
+            "cancel": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "other": 1,
+            "weather": 0,
+            "reschedule": 0,
+            "refund": 0,
+            "pricing": 0,
+            "location": 0
+          },
+          "urgency": 0.98,
+          "urgencyProbs": {
+            "0": 0.02,
+            "1": 0.98
+          },
+          "needsHumanProb": 0.94
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2044,
+          "costUsd": 0.003351,
+          "category": "other",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2096,
+          "costUsd": 0.003351,
+          "category": "other",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 3016,
+          "costUsd": 0.003351,
+          "category": "other",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h04",
+    "lang": "zh",
+    "hard": true,
+    "text": "太差劲了，你们到底怎么回事？",
+    "expected": {
+      "category": "other",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 333,
+          "costUsd": 0.000031668,
+          "category": "other",
+          "categoryProbs": {
+            "weather": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "location": 0,
+            "late_arrival": 0,
+            "other": 1,
+            "cancel": 0,
+            "refund": 0
+          },
+          "urgency": 0.98,
+          "urgencyProbs": {
+            "0": 0.02,
+            "1": 0.98
+          },
+          "needsHumanProb": 0.93
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 370,
+          "costUsd": 0.000031668,
+          "category": "other",
+          "categoryProbs": {
+            "reschedule": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "location": 0,
+            "weather": 0,
+            "other": 1,
+            "refund": 0
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.93
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 335,
+          "costUsd": 0.000031668,
+          "category": "other",
+          "categoryProbs": {
+            "reschedule": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "location": 0,
+            "group_size": 0,
+            "weather": 0,
+            "other": 1
+          },
+          "urgency": 0.98,
+          "urgencyProbs": {
+            "0": 0.02,
+            "1": 0.98
+          },
+          "needsHumanProb": 0.93
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1554,
+          "costUsd": 0.00336,
+          "category": "other",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1900,
+          "costUsd": 0.00336,
+          "category": "other",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1862,
+          "costUsd": 0.00336,
+          "category": "other",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h05",
+    "lang": "en",
+    "hard": true,
+    "text": "Hey the photographer hasnt shown up yet were at the gate since 10 min?? 😡😡",
+    "expected": {
+      "category": "late_arrival",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 410,
+          "costUsd": 0.000032046,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0,
+            "location": 0,
+            "cancel": 0,
+            "late_arrival": 1,
+            "pricing": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "refund": 0
+          },
+          "urgency": 1,
+          "urgencyProbs": {
+            "0": 0,
+            "1": 1
+          },
+          "needsHumanProb": 0.92
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 392,
+          "costUsd": 0.000032046,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "late_arrival": 1,
+            "other": 0,
+            "cancel": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "refund": 0,
+            "reschedule": 0,
+            "location": 0,
+            "weather": 0
+          },
+          "urgency": 1,
+          "urgencyProbs": {
+            "0": 0,
+            "1": 1
+          },
+          "needsHumanProb": 0.93
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 400,
+          "costUsd": 0.000032046,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "weather": 0,
+            "late_arrival": 1,
+            "group_size": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "location": 0,
+            "refund": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 1,
+          "urgencyProbs": {
+            "0": 0,
+            "1": 1
+          },
+          "needsHumanProb": 0.92
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1899,
+          "costUsd": 0.003384,
+          "category": "late_arrival",
+          "urgency": 1,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1609,
+          "costUsd": 0.003384,
+          "category": "late_arrival",
+          "urgency": 1,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1880,
+          "costUsd": 0.003384,
+          "category": "late_arrival",
+          "urgency": 1,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h06",
+    "lang": "en",
+    "hard": true,
+    "text": "tmrw shoot - can we do 4 ppl not 2 and also move to 5pm?? thx",
+    "expected": {
+      "category": "group_size",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "alsoAcceptable": [
+      "reschedule"
+    ],
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 476,
+          "costUsd": 0.000032046,
+          "category": "group_size",
+          "categoryProbs": {
+            "reschedule": 0.42,
+            "refund": 0,
+            "late_arrival": 0,
+            "cancel": 0,
+            "pricing": 0,
+            "group_size": 0.54,
+            "other": 0.04,
+            "location": 0,
+            "weather": 0
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.62
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 313,
+          "costUsd": 0.000032046,
+          "category": "group_size",
+          "categoryProbs": {
+            "pricing": 0,
+            "weather": 0,
+            "group_size": 0.5,
+            "reschedule": 0.46,
+            "location": 0,
+            "cancel": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "other": 0.04
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.62
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 343,
+          "costUsd": 0.000032046,
+          "category": "reschedule",
+          "categoryProbs": {
+            "reschedule": 0.52,
+            "other": 0.03,
+            "cancel": 0,
+            "pricing": 0,
+            "group_size": 0.45,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "weather": 0
+          },
+          "urgency": 0.99,
+          "urgencyProbs": {
+            "0": 0.01,
+            "1": 0.99
+          },
+          "needsHumanProb": 0.62
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1807,
+          "costUsd": 0.003441,
+          "category": "group_size",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1757,
+          "costUsd": 0.003426,
+          "category": "reschedule",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2022,
+          "costUsd": 0.003441,
+          "category": "group_size",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h07",
+    "lang": "en",
+    "hard": true,
+    "text": "what time tomorrow?",
+    "expected": {
+      "category": "other",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 350,
+          "costUsd": 0.000031248,
+          "category": "reschedule",
+          "categoryProbs": {
+            "pricing": 0,
+            "weather": 0,
+            "group_size": 0,
+            "reschedule": 0.6,
+            "location": 0,
+            "cancel": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "other": 0.4
+          },
+          "urgency": 0.84,
+          "urgencyProbs": {
+            "0": 0.16,
+            "1": 0.84
+          },
+          "needsHumanProb": 0.52
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 469,
+          "costUsd": 0.000031248,
+          "category": "reschedule",
+          "categoryProbs": {
+            "other": 0.39,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "reschedule": 0.61,
+            "group_size": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "weather": 0
+          },
+          "urgency": 0.81,
+          "urgencyProbs": {
+            "0": 0.19,
+            "1": 0.81
+          },
+          "needsHumanProb": 0.51
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 628,
+          "costUsd": 0.000031248,
+          "category": "reschedule",
+          "categoryProbs": {
+            "weather": 0,
+            "other": 0.37,
+            "pricing": 0,
+            "late_arrival": 0,
+            "reschedule": 0.63,
+            "location": 0,
+            "cancel": 0,
+            "refund": 0,
+            "group_size": 0
+          },
+          "urgency": 0.8,
+          "urgencyProbs": {
+            "0": 0.2,
+            "1": 0.8
+          },
+          "needsHumanProb": 0.51
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1864,
+          "costUsd": 0.003324,
+          "category": "other",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2096,
+          "costUsd": 0.003324,
+          "category": "other",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2115,
+          "costUsd": 0.003324,
+          "category": "other",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h08",
+    "lang": "en",
+    "hard": true,
+    "text": "Please unsubscribe me from this mailing list.",
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 412,
+          "costUsd": 0.000031416,
+          "category": "other",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "other": 0.99,
+            "group_size": 0,
+            "weather": 0,
+            "location": 0,
+            "cancel": 0.01
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.28
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 369,
+          "costUsd": 0.000031416,
+          "category": "other",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "weather": 0,
+            "refund": 0,
+            "group_size": 0,
+            "cancel": 0.01,
+            "location": 0,
+            "pricing": 0,
+            "reschedule": 0,
+            "other": 0.99
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.28
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 368,
+          "costUsd": 0.000031416,
+          "category": "other",
+          "categoryProbs": {
+            "location": 0,
+            "reschedule": 0,
+            "late_arrival": 0,
+            "cancel": 0.01,
+            "group_size": 0,
+            "other": 0.99,
+            "weather": 0,
+            "refund": 0,
+            "pricing": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.3
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1712,
+          "costUsd": 0.003348,
+          "category": "other",
+          "urgency": 0.1,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1917,
+          "costUsd": 0.003348,
+          "category": "other",
+          "urgency": 0.1,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2032,
+          "costUsd": 0.003348,
+          "category": "other",
+          "urgency": 0.1,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "h09",
+    "lang": "zh",
+    "hard": true,
+    "text": "请停止给我发邮件",
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 356,
+          "costUsd": 0.000031416,
+          "category": "other",
+          "categoryProbs": {
+            "other": 0.96,
+            "late_arrival": 0,
+            "group_size": 0,
+            "location": 0,
+            "refund": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "cancel": 0.04,
+            "pricing": 0
+          },
+          "urgency": 0.2,
+          "urgencyProbs": {
+            "0": 0.8,
+            "1": 0.2
+          },
+          "needsHumanProb": 0.53
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 368,
+          "costUsd": 0.000031416,
+          "category": "other",
+          "categoryProbs": {
+            "other": 0.96,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "cancel": 0.04
+          },
+          "urgency": 0.2,
+          "urgencyProbs": {
+            "0": 0.8,
+            "1": 0.2
+          },
+          "needsHumanProb": 0.51
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 315,
+          "costUsd": 0.000031416,
+          "category": "other",
+          "categoryProbs": {
+            "other": 0.96,
+            "weather": 0,
+            "late_arrival": 0,
+            "pricing": 0,
+            "location": 0,
+            "reschedule": 0,
+            "cancel": 0.04,
+            "refund": 0,
+            "group_size": 0
+          },
+          "urgency": 0.19,
+          "urgencyProbs": {
+            "0": 0.81,
+            "1": 0.19
+          },
+          "needsHumanProb": 0.55
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2280,
+          "costUsd": 0.003339,
+          "category": "other",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1927,
+          "costUsd": 0.003339,
+          "category": "other",
+          "urgency": 0.6,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1974,
+          "costUsd": 0.003339,
+          "category": "other",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h10",
+    "lang": "ko",
+    "hard": true,
+    "text": "내일 비 오면 그냥 취소하고 환불 받을 수 있나요?",
+    "expected": {
+      "category": "weather",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "alsoAcceptable": [
+      "cancel",
+      "refund"
+    ],
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 389,
+          "costUsd": 0.000031878,
+          "category": "weather",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "reschedule": 0,
+            "other": 0,
+            "location": 0,
+            "pricing": 0,
+            "weather": 0.64,
+            "refund": 0.33,
+            "group_size": 0,
+            "cancel": 0.03
+          },
+          "urgency": 0.77,
+          "urgencyProbs": {
+            "0": 0.23,
+            "1": 0.77
+          },
+          "needsHumanProb": 0.77
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 352,
+          "costUsd": 0.000031878,
+          "category": "weather",
+          "categoryProbs": {
+            "refund": 0.33,
+            "late_arrival": 0,
+            "location": 0,
+            "reschedule": 0,
+            "other": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "weather": 0.63,
+            "cancel": 0.04
+          },
+          "urgency": 0.76,
+          "urgencyProbs": {
+            "0": 0.24,
+            "1": 0.76
+          },
+          "needsHumanProb": 0.76
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 394,
+          "costUsd": 0.000031878,
+          "category": "weather",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "other": 0,
+            "cancel": 0.04,
+            "pricing": 0,
+            "group_size": 0,
+            "refund": 0.32,
+            "reschedule": 0,
+            "location": 0,
+            "weather": 0.64
+          },
+          "urgency": 0.76,
+          "urgencyProbs": {
+            "0": 0.24,
+            "1": 0.76
+          },
+          "needsHumanProb": 0.77
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2419,
+          "costUsd": 0.003399,
+          "category": "weather",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1972,
+          "costUsd": 0.003399,
+          "category": "weather",
+          "urgency": 0.8,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1861,
+          "costUsd": 0.003399,
+          "category": "weather",
+          "urgency": 0.8,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h11",
+    "lang": "ja",
+    "hard": true,
+    "text": "先日キャンセルさせていただいた件で、お支払い済みの代金のお取り扱いについてご教示いただけますと幸いです。",
+    "expected": {
+      "category": "refund",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 331,
+          "costUsd": 0.000033264,
+          "category": "refund",
+          "categoryProbs": {
+            "pricing": 0,
+            "refund": 1,
+            "location": 0,
+            "cancel": 0,
+            "weather": 0,
+            "other": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "late_arrival": 0
+          },
+          "urgency": 0.01,
+          "urgencyProbs": {
+            "0": 0.99,
+            "1": 0.01
+          },
+          "needsHumanProb": 0.89
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 455,
+          "costUsd": 0.000033264,
+          "category": "refund",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "refund": 1,
+            "location": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "cancel": 0,
+            "pricing": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.9
+        },
+        {
+          "round": 3,
+          "ok": false,
+          "error": "GatewayTimeoutError 408 Gateway request timed out: Cannot connect to API: HTTP/2: \"headers timeout after 300000\"\n\n    This is a client-side timeout. To resolve this, increase your timeout configuration: https://vercel.com/docs/ai-gateway/capabilities/video-generation#extending-timeouts-for-node.js",
+          "latencyMs": 300009
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1744,
+          "costUsd": 0.003468,
+          "category": "refund",
+          "urgency": 0.4,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1753,
+          "costUsd": 0.003468,
+          "category": "refund",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2095,
+          "costUsd": 0.003468,
+          "category": "refund",
+          "urgency": 0.4,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h12",
+    "lang": "ja",
+    "hard": true,
+    "text": "今日の撮影なんやけど、電車止まってもうて30分くらい遅れそうやねん…間に合わんかったらどないしよ",
+    "expected": {
+      "category": "late_arrival",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 376,
+          "costUsd": 0.000033138,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 1,
+            "group_size": 0,
+            "cancel": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "refund": 0,
+            "pricing": 0,
+            "location": 0
+          },
+          "urgency": 1,
+          "urgencyProbs": {
+            "0": 0,
+            "1": 1
+          },
+          "needsHumanProb": 0.73
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 460,
+          "costUsd": 0.000033138,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "reschedule": 0,
+            "other": 0,
+            "pricing": 0,
+            "location": 0,
+            "group_size": 0,
+            "weather": 0,
+            "late_arrival": 1,
+            "cancel": 0,
+            "refund": 0
+          },
+          "urgency": 1,
+          "urgencyProbs": {
+            "0": 0,
+            "1": 1
+          },
+          "needsHumanProb": 0.7
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 404,
+          "costUsd": 0.000033138,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "group_size": 0,
+            "late_arrival": 1,
+            "reschedule": 0,
+            "location": 0,
+            "refund": 0,
+            "weather": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "other": 0
+          },
+          "urgency": 1,
+          "urgencyProbs": {
+            "0": 0,
+            "1": 1
+          },
+          "needsHumanProb": 0.72
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1882,
+          "costUsd": 0.003483,
+          "category": "late_arrival",
+          "urgency": 0.95,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1982,
+          "costUsd": 0.003483,
+          "category": "late_arrival",
+          "urgency": 0.9,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1818,
+          "costUsd": 0.003483,
+          "category": "late_arrival",
+          "urgency": 0.95,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h13",
+    "lang": "en",
+    "hard": true,
+    "text": "Hi can we chnage the dat of our shoot from the 15th to the 17h? sry for typos on my phone",
+    "expected": {
+      "category": "reschedule",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 372,
+          "costUsd": 0.000032424,
+          "category": "reschedule",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "location": 0,
+            "reschedule": 1,
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "cancel": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.22
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 356,
+          "costUsd": 0.000032424,
+          "category": "reschedule",
+          "categoryProbs": {
+            "weather": 0,
+            "pricing": 0,
+            "reschedule": 1,
+            "group_size": 0,
+            "location": 0,
+            "late_arrival": 0,
+            "other": 0,
+            "cancel": 0,
+            "refund": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.23
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 427,
+          "costUsd": 0.000032424,
+          "category": "reschedule",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "refund": 0,
+            "weather": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "location": 0,
+            "cancel": 0,
+            "reschedule": 1,
+            "other": 0
+          },
+          "urgency": 0.07,
+          "urgencyProbs": {
+            "0": 0.93,
+            "1": 0.07
+          },
+          "needsHumanProb": 0.22
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2049,
+          "costUsd": 0.003432,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2001,
+          "costUsd": 0.003432,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1943,
+          "costUsd": 0.003432,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "h14",
+    "lang": "zh",
+    "hard": true,
+    "text": "摄影师人很好👍 但是照片什么时候能收到啊？已经两周了😢",
+    "expected": {
+      "category": "other",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 417,
+          "costUsd": 0.000032298,
+          "category": "other",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0.06,
+            "other": 0.94,
+            "reschedule": 0,
+            "pricing": 0,
+            "weather": 0,
+            "group_size": 0,
+            "location": 0,
+            "cancel": 0
+          },
+          "urgency": 0.81,
+          "urgencyProbs": {
+            "0": 0.19,
+            "1": 0.81
+          },
+          "needsHumanProb": 0.52
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 410,
+          "costUsd": 0.000032298,
+          "category": "other",
+          "categoryProbs": {
+            "reschedule": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "late_arrival": 0.08,
+            "group_size": 0,
+            "location": 0,
+            "weather": 0,
+            "other": 0.92,
+            "refund": 0
+          },
+          "urgency": 0.83,
+          "urgencyProbs": {
+            "0": 0.17,
+            "1": 0.83
+          },
+          "needsHumanProb": 0.51
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 416,
+          "costUsd": 0.000032298,
+          "category": "other",
+          "categoryProbs": {
+            "other": 0.94,
+            "refund": 0,
+            "late_arrival": 0.06,
+            "location": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "cancel": 0,
+            "weather": 0
+          },
+          "urgency": 0.77,
+          "urgencyProbs": {
+            "0": 0.23,
+            "1": 0.77
+          },
+          "needsHumanProb": 0.51
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2311,
+          "costUsd": 0.003405,
+          "category": "other",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 2145,
+          "costUsd": 0.003405,
+          "category": "other",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 2109,
+          "costUsd": 0.003405,
+          "category": "other",
+          "urgency": 0.7,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h15",
+    "lang": "en",
+    "hard": true,
+    "text": "We might be a bit late tomorrow morning because our flight lands at 7. Is the 9am shoot still ok or should we move it later?",
+    "expected": {
+      "category": "reschedule",
+      "urgency": "high",
+      "needsHuman": true
+    },
+    "alsoAcceptable": [
+      "late_arrival"
+    ],
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 346,
+          "costUsd": 0.000032382,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "refund": 0,
+            "late_arrival": 0.85,
+            "weather": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "location": 0,
+            "cancel": 0,
+            "other": 0,
+            "reschedule": 0.15
+          },
+          "urgency": 0.96,
+          "urgencyProbs": {
+            "0": 0.04,
+            "1": 0.96
+          },
+          "needsHumanProb": 0.29
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 336,
+          "costUsd": 0.000032382,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "refund": 0,
+            "pricing": 0,
+            "group_size": 0,
+            "cancel": 0,
+            "other": 0,
+            "location": 0,
+            "late_arrival": 0.84,
+            "weather": 0,
+            "reschedule": 0.16
+          },
+          "urgency": 0.96,
+          "urgencyProbs": {
+            "0": 0.04,
+            "1": 0.96
+          },
+          "needsHumanProb": 0.29
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 349,
+          "costUsd": 0.000032382,
+          "category": "late_arrival",
+          "categoryProbs": {
+            "group_size": 0,
+            "pricing": 0,
+            "weather": 0,
+            "refund": 0,
+            "other": 0,
+            "reschedule": 0.13,
+            "late_arrival": 0.87,
+            "location": 0,
+            "cancel": 0
+          },
+          "urgency": 0.95,
+          "urgencyProbs": {
+            "0": 0.05,
+            "1": 0.95
+          },
+          "needsHumanProb": 0.3
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2026,
+          "costUsd": 0.00345,
+          "category": "late_arrival",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1866,
+          "costUsd": 0.00345,
+          "category": "late_arrival",
+          "urgency": 0.85,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1849,
+          "costUsd": 0.00345,
+          "category": "late_arrival",
+          "urgency": 0.8,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "h16",
+    "lang": "en",
+    "hard": true,
+    "text": "How much would it cost to add my grandparents? They just decided to come.",
+    "expected": {
+      "category": "pricing",
+      "urgency": "low",
+      "needsHuman": false
+    },
+    "alsoAcceptable": [
+      "group_size"
+    ],
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 367,
+          "costUsd": 0.000031752,
+          "category": "group_size",
+          "categoryProbs": {
+            "other": 0,
+            "refund": 0,
+            "location": 0,
+            "weather": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "group_size": 0.54,
+            "cancel": 0,
+            "pricing": 0.46
+          },
+          "urgency": 0.23,
+          "urgencyProbs": {
+            "0": 0.77,
+            "1": 0.23
+          },
+          "needsHumanProb": 0.57
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 398,
+          "costUsd": 0.000031752,
+          "category": "pricing",
+          "categoryProbs": {
+            "refund": 0,
+            "other": 0,
+            "pricing": 0.55,
+            "location": 0,
+            "late_arrival": 0,
+            "weather": 0,
+            "group_size": 0.45,
+            "cancel": 0,
+            "reschedule": 0
+          },
+          "urgency": 0.24,
+          "urgencyProbs": {
+            "0": 0.76,
+            "1": 0.24
+          },
+          "needsHumanProb": 0.55
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 367,
+          "costUsd": 0.000031752,
+          "category": "pricing",
+          "categoryProbs": {
+            "refund": 0,
+            "reschedule": 0,
+            "late_arrival": 0,
+            "pricing": 0.52,
+            "cancel": 0,
+            "group_size": 0.48,
+            "other": 0,
+            "location": 0,
+            "weather": 0
+          },
+          "urgency": 0.26,
+          "urgencyProbs": {
+            "0": 0.74,
+            "1": 0.26
+          },
+          "needsHumanProb": 0.57
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1426,
+          "costUsd": 0.003396,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1887,
+          "costUsd": 0.003396,
+          "category": "group_size",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1722,
+          "costUsd": 0.003396,
+          "category": "group_size",
+          "urgency": 0.4,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "h17",
+    "lang": "ko",
+    "hard": true,
+    "text": "촬영장소가 비가 오면 실내로 바뀌나요? 그럼 가격도 달라지나요?",
+    "expected": {
+      "category": "weather",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "alsoAcceptable": [
+      "location",
+      "pricing"
+    ],
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 334,
+          "costUsd": 0.00003234,
+          "category": "weather",
+          "categoryProbs": {
+            "weather": 0.99,
+            "refund": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "pricing": 0.01,
+            "location": 0,
+            "cancel": 0,
+            "reschedule": 0,
+            "other": 0
+          },
+          "urgency": 0.03,
+          "urgencyProbs": {
+            "0": 0.97,
+            "1": 0.03
+          },
+          "needsHumanProb": 0.36
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 361,
+          "costUsd": 0.00003234,
+          "category": "weather",
+          "categoryProbs": {
+            "group_size": 0,
+            "late_arrival": 0,
+            "reschedule": 0,
+            "location": 0,
+            "refund": 0,
+            "weather": 0.99,
+            "pricing": 0.01,
+            "cancel": 0,
+            "other": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.37
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 395,
+          "costUsd": 0.00003234,
+          "category": "weather",
+          "categoryProbs": {
+            "group_size": 0,
+            "location": 0,
+            "pricing": 0.01,
+            "cancel": 0,
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "weather": 0.99,
+            "reschedule": 0
+          },
+          "urgency": 0.02,
+          "urgencyProbs": {
+            "0": 0.98,
+            "1": 0.02
+          },
+          "needsHumanProb": 0.35
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 2567,
+          "costUsd": 0.003429,
+          "category": "weather",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1802,
+          "costUsd": 0.003429,
+          "category": "weather",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1964,
+          "costUsd": 0.003429,
+          "category": "weather",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "h18",
+    "lang": "zh",
+    "hard": true,
+    "text": "請問可以改期嗎",
+    "expected": {
+      "category": "reschedule",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 443,
+          "costUsd": 0.000031374,
+          "category": "reschedule",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "refund": 0,
+            "location": 0,
+            "weather": 0,
+            "cancel": 0,
+            "reschedule": 1,
+            "pricing": 0
+          },
+          "urgency": 0.03,
+          "urgencyProbs": {
+            "0": 0.97,
+            "1": 0.03
+          },
+          "needsHumanProb": 0.29
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 360,
+          "costUsd": 0.000031374,
+          "category": "reschedule",
+          "categoryProbs": {
+            "reschedule": 1,
+            "other": 0,
+            "pricing": 0,
+            "location": 0,
+            "late_arrival": 0,
+            "weather": 0,
+            "cancel": 0,
+            "group_size": 0,
+            "refund": 0
+          },
+          "urgency": 0.03,
+          "urgencyProbs": {
+            "0": 0.97,
+            "1": 0.03
+          },
+          "needsHumanProb": 0.3
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 320,
+          "costUsd": 0.000031374,
+          "category": "reschedule",
+          "categoryProbs": {
+            "location": 0,
+            "reschedule": 1,
+            "late_arrival": 0,
+            "group_size": 0,
+            "cancel": 0,
+            "other": 0,
+            "weather": 0,
+            "refund": 0,
+            "pricing": 0
+          },
+          "urgency": 0.03,
+          "urgencyProbs": {
+            "0": 0.97,
+            "1": 0.03
+          },
+          "needsHumanProb": 0.31
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1905,
+          "costUsd": 0.003369,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1785,
+          "costUsd": 0.003369,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1672,
+          "costUsd": 0.003369,
+          "category": "reschedule",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "h19",
+    "lang": "en",
+    "hard": true,
+    "text": "I booked with you guys last year and loved it! Do you do wedding shoots in Hokkaido?? 😍📸",
+    "expected": {
+      "category": "location",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 312,
+          "costUsd": 0.000032172,
+          "category": "location",
+          "categoryProbs": {
+            "refund": 0,
+            "reschedule": 0,
+            "late_arrival": 0,
+            "cancel": 0,
+            "pricing": 0,
+            "location": 0.98,
+            "other": 0.02,
+            "group_size": 0,
+            "weather": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.26
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 408,
+          "costUsd": 0.000032172,
+          "category": "location",
+          "categoryProbs": {
+            "pricing": 0,
+            "weather": 0,
+            "reschedule": 0,
+            "group_size": 0,
+            "location": 0.97,
+            "cancel": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "other": 0.03
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.26
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 384,
+          "costUsd": 0.000032172,
+          "category": "location",
+          "categoryProbs": {
+            "reschedule": 0,
+            "other": 0.04,
+            "pricing": 0,
+            "location": 0.96,
+            "late_arrival": 0,
+            "weather": 0,
+            "group_size": 0,
+            "cancel": 0,
+            "refund": 0
+          },
+          "urgency": 0,
+          "urgencyProbs": {
+            "0": 1,
+            "1": 0
+          },
+          "needsHumanProb": 0.26
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 3374,
+          "costUsd": 0.003399,
+          "category": "other",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1806,
+          "costUsd": 0.003399,
+          "category": "other",
+          "urgency": 0.3,
+          "needsHumanProb": 1
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1975,
+          "costUsd": 0.003399,
+          "category": "other",
+          "urgency": 0.2,
+          "needsHumanProb": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "h20",
+    "lang": "ko",
+    "hard": true,
+    "text": "취소해주세요.",
+    "expected": {
+      "category": "cancel",
+      "urgency": "low",
+      "needsHuman": true
+    },
+    "runs": {
+      "jev": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 414,
+          "costUsd": 0.000031416,
+          "category": "cancel",
+          "categoryProbs": {
+            "group_size": 0,
+            "pricing": 0,
+            "location": 0,
+            "cancel": 1,
+            "other": 0,
+            "refund": 0,
+            "late_arrival": 0,
+            "weather": 0,
+            "reschedule": 0
+          },
+          "urgency": 0.61,
+          "urgencyProbs": {
+            "0": 0.39,
+            "1": 0.61
+          },
+          "needsHumanProb": 0.47
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 365,
+          "costUsd": 0.000031416,
+          "category": "cancel",
+          "categoryProbs": {
+            "late_arrival": 0,
+            "reschedule": 0,
+            "other": 0,
+            "location": 0,
+            "refund": 0,
+            "weather": 0,
+            "group_size": 0,
+            "pricing": 0,
+            "cancel": 1
+          },
+          "urgency": 0.55,
+          "urgencyProbs": {
+            "0": 0.45,
+            "1": 0.55
+          },
+          "needsHumanProb": 0.5
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 342,
+          "costUsd": 0.000031416,
+          "category": "cancel",
+          "categoryProbs": {
+            "other": 0,
+            "late_arrival": 0,
+            "group_size": 0,
+            "location": 0,
+            "refund": 0,
+            "weather": 0,
+            "cancel": 1,
+            "reschedule": 0,
+            "pricing": 0
+          },
+          "urgency": 0.6,
+          "urgencyProbs": {
+            "0": 0.4,
+            "1": 0.6
+          },
+          "needsHumanProb": 0.48
+        }
+      ],
+      "llm": [
+        {
+          "round": 1,
+          "ok": true,
+          "latencyMs": 1980,
+          "costUsd": 0.003333,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 2,
+          "ok": true,
+          "latencyMs": 1862,
+          "costUsd": 0.003333,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        },
+        {
+          "round": 3,
+          "ok": true,
+          "latencyMs": 1884,
+          "costUsd": 0.003333,
+          "category": "cancel",
+          "urgency": 0.3,
+          "needsHumanProb": 0
+        }
+      ]
+    }
+  }
+]

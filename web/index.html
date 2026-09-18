@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Jev vs GPT-4o-mini</title>
+<title>Jev vs LLMs</title>
 <style>
   :root {
     --bg: #0b0b0c;
@@ -21,35 +21,35 @@
     color: var(--text); font: 14px/1.4 Inter, "Helvetica Neue", "Hiragino Sans", "PingFang SC", "Apple SD Gothic Neo", sans-serif;
     font-variant-numeric: tabular-nums;
   }
-  header { display: flex; align-items: flex-start; justify-content: space-between; padding: 22px 32px 0; height: 76px; }
-  h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  header { display: flex; align-items: flex-start; justify-content: space-between; padding: 20px 24px 0; height: 72px; }
+  h1 { font-size: 21px; font-weight: 600; letter-spacing: -0.01em; }
   h1 .vs { color: var(--muted); font-weight: 400; }
   .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
   .meta { text-align: right; color: var(--muted); font-size: 12px; }
   .meta .live { color: var(--accent); font-weight: 600; }
 
-  main { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 32px; height: 620px; }
-  .lane { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  main { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 14px; padding: 0 24px; height: 628px; }
+  .lane { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
   .lane-head { display: flex; justify-content: space-between; align-items: baseline; }
-  .lane-name { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
+  .lane-name { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; }
   .lane.jev .lane-name { color: var(--accent); }
   .lane-model, .lane-progress { color: var(--muted); font-size: 12px; }
 
-  .now { height: 58px; display: flex; gap: 10px; align-items: flex-start; }
+  .now { height: 56px; display: flex; gap: 8px; align-items: flex-start; }
   .lang { flex: none; font-size: 11px; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; margin-top: 2px; text-transform: uppercase; }
-  .now-text { flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 15px; }
+  .now-text { flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 14px; }
   .spinner { flex: none; width: 16px; height: 16px; margin-top: 3px; border: 2px solid var(--line); border-top-color: var(--text); border-radius: 50%; animation: spin 0.8s linear infinite; visibility: hidden; }
   .lane.busy .spinner { visibility: visible; }
   .lane.jev .spinner { border-top-color: var(--accent); }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  .last { height: 136px; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; transition: border-color 150ms; }
+  .last { height: 132px; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; transition: border-color 150ms; }
   .last.ok { border-color: var(--ok); }
   .last.ng { border-color: var(--ng); }
   .chip { justify-self: start; align-self: start; font-size: 13px; font-weight: 600; background: #232327; border-radius: 999px; padding: 2px 10px; }
   .last .ms { font-size: 13px; color: var(--muted); }
   .bars { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 4px; }
-  .bar { display: grid; grid-template-columns: 96px 1fr 44px; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+  .bar { display: grid; grid-template-columns: 86px 1fr 36px; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
   .bar-track { height: 6px; background: #232327; border-radius: 3px; overflow: hidden; }
   .bar-fill { height: 100%; background: var(--text); border-radius: 3px; }
   .lane.jev .bar-fill { background: var(--accent); }
@@ -57,31 +57,35 @@
   .noprob { grid-column: 1 / -1; color: var(--muted); font-size: 12px; align-self: center; }
   .expected { grid-column: 1 / -1; font-size: 12px; color: var(--muted); }
 
-  .hist { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 26px; gap: 4px 8px; align-content: start; }
-  .row { display: grid; grid-template-columns: 34px 1fr auto; gap: 6px; align-items: center; font-size: 12px; border-left: 3px solid var(--line); padding-left: 8px; background: #18181b; border-radius: 0 4px 4px 0; }
+  .hist { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 24px; gap: 4px 6px; align-content: start; }
+  .row { display: grid; grid-template-columns: 22px 1fr auto; gap: 4px; align-items: center; font-size: 11.5px; border-left: 3px solid var(--line); padding-left: 6px; background: #18181b; border-radius: 0 4px 4px 0; min-width: 0; }
+  .row > span:nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .row.ok { border-left-color: var(--ok); }
   .row.ng { border-left-color: var(--ng); }
   .row .id { color: var(--muted); }
-  .row .ms { color: var(--muted); padding-right: 8px; }
+  .row .ms { color: var(--muted); padding-right: 6px; }
 
   .totals { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); padding-top: 10px; }
-  .totals .k { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .totals .v { font-size: 20px; font-weight: 600; }
+  .totals .k { color: var(--muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .totals .v { font-size: 17px; font-weight: 600; }
 
-  #final { position: absolute; left: 32px; right: 32px; bottom: 20px; height: 300px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 0 0 100vmax rgba(11, 11, 12, 0.6); padding: 22px 28px; opacity: 0; transform: translateY(12px); transition: opacity 400ms, transform 400ms; pointer-events: none; }
+  #final { position: absolute; left: 24px; right: 24px; bottom: 14px; height: 340px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 0 0 100vmax rgba(11, 11, 12, 0.6); padding: 22px 28px; opacity: 0; transform: translateY(12px); transition: opacity 400ms, transform 400ms; pointer-events: none; display: grid; grid-template-columns: 1.25fr 1px 1fr; gap: 28px; }
   #final.show { opacity: 1; transform: none; }
-  .final-grid { display: grid; grid-template-columns: repeat(3, 1fr) 1px repeat(2, 1fr); grid-template-rows: 172px auto; gap: 12px 24px; align-items: center; }
-  .sep { background: var(--line); height: 100%; grid-column: 4; grid-row: 1 / 3; }
-  .stat .k { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
-  .stat .pair { display: flex; flex-direction: column; gap: 2px; }
-  .stat .jv { font-size: 40px; font-weight: 700; color: var(--accent); line-height: 1.1; }
-  .stat .lv { font-size: 22px; color: var(--text); }
-  .stat .who { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 6px; }
-  .stat.big .x { font-size: 64px; font-weight: 700; line-height: 1; }
-  .stat.big .x small { font-size: 20px; font-weight: 500; color: var(--muted); margin-left: 6px; }
-  .final-src { color: var(--muted); font-size: 12px; margin-top: 18px; }
-  .vs-note { color: var(--muted); font-size: 13px; margin-top: 8px; }
-  .alt { grid-column: 5 / 7; grid-row: 2; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 10px; }
+  .sep { background: var(--line); }
+  table.res { width: 100%; border-collapse: collapse; }
+  table.res th { color: var(--muted); font-size: 12px; font-weight: 400; text-align: right; padding: 0 0 10px; }
+  table.res th:first-child { text-align: left; }
+  table.res td { text-align: right; padding: 8px 0; font-size: 22px; border-top: 1px solid var(--line); }
+  table.res td:first-child { text-align: left; font-size: 14px; color: var(--muted); }
+  table.res tr.jev td { font-size: 30px; font-weight: 700; color: var(--accent); }
+  table.res tr.jev td:first-child { font-size: 15px; color: var(--accent); }
+  .mult .k { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+  .mult .line { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+  .mult .x { font-size: 44px; font-weight: 700; line-height: 1; min-width: 118px; text-align: right; }
+  .mult .x small { font-size: 15px; font-weight: 500; color: var(--muted); margin-left: 4px; }
+  .mult .vs { color: var(--muted); font-size: 13px; }
+  .mult .group + .group { margin-top: 8px; }
+  .final-src { grid-column: 1 / -1; color: var(--muted); font-size: 11.5px; align-self: end; }
 
   #idle { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; pointer-events: none; }
   #idle.hide { display: none; }
@@ -90,16 +94,13 @@
 <body>
 <header>
   <div>
-    <h1>Jev <span class="vs">vs</span> GPT-4o-mini — routing 60 customer messages</h1>
+    <h1 id="title">Jev <span class="vs">vs</span> LLMs — routing 60 customer messages</h1>
     <div class="sub" id="sub">Demo shows 12 of the 60 cases (6 easy, 6 hard, fixed before results were seen)</div>
   </div>
   <div class="meta" id="meta">&nbsp;</div>
 </header>
 
-<main>
-  <section class="lane jev" id="lane-jev"></section>
-  <section class="lane llm" id="lane-llm"></section>
-</main>
+<main id="lanes"></main>
 
 <div id="final"></div>
 <div id="idle">Click or press Space to start</div>
@@ -124,21 +125,23 @@
   const esc = (s) => String(s).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
 
   const lanes = {};
-  for (const key of ["jev", "llm"]) {
-    const el = $(`#lane-${key}`);
-    el.append($("#lane-tpl").content.cloneNode(true));
-    $(".lane-name", el).textContent = key === "jev" ? "JEV" : "GPT-4o-mini";
-    lanes[key] = { el, done: 0, correct: 0, latSum: 0, cost: 0, costKnown: true };
-  }
-
   let total = 12;
+
   function onMeta(m) {
     total = m.total;
-    const mode = m.live ? `<span class="live">LIVE</span> · calling the APIs now (not the measured run)` : `Replay of a measured run · n=${m.nAll} · ${m.date}`;
+    const mode = m.live ? `<span class="live">LIVE</span> · calling the APIs now (not the measured run)` : `Replay of measured runs · n=${m.nAll} · ${m.date}`;
     $("#meta").innerHTML = `${mode}<br>${m.live ? "" : `timings = measured latencies of round ${m.round}`}`;
-    $(".lane-model", lanes.jev.el).textContent = m.models.jev;
-    $(".lane-model", lanes.llm.el).textContent = m.models.llm;
-    for (const l of Object.values(lanes)) $(".lane-progress", l.el).textContent = `0 / ${total}`;
+    $("#title").innerHTML = `${m.lanes.map((l) => esc(l.key === "jev" ? "Jev" : l.name)).join(' <span class="vs">vs</span> ')} — routing 60 customer messages`;
+    for (const l of m.lanes) {
+      const el = document.createElement("section");
+      el.className = `lane ${l.key}`;
+      el.append($("#lane-tpl").content.cloneNode(true));
+      $(".lane-name", el).textContent = l.name;
+      $(".lane-model", el).textContent = l.model;
+      $(".lane-progress", el).textContent = `0 / ${total}`;
+      $("#lanes").append(el);
+      lanes[l.key] = { el, done: 0, correct: 0, latSum: 0, cost: 0, costKnown: true };
+    }
   }
 
   function onStart(e) {
@@ -191,30 +194,28 @@
     return a >= b ? { x: a / b, better: true } : { x: b / a, better: false };
   }
   const fmtX = (r) => (r.x >= 10 ? r.x.toFixed(0) : r.x.toFixed(1));
+  const usd = (v) => (v == null ? "n/a" : v < 1 ? `$${v.toFixed(3)}` : `$${v.toFixed(2)}`);
 
-  // Ratios from the extra run with a different comparison model (shows the ratio depends on the comparison model)
-  function altLine(a) {
-    if (!a) return "";
-    const sp = ratio(a.p50.llm, a.p50.jev), co = ratio(a.per1000.llm, a.per1000.jev);
-    if (!sp || !co) return "";
-    return `<div class="alt">vs ${esc(a.label)}: ${fmtX(sp)}× ${sp.better ? "faster" : "slower"}, ${fmtX(co)}× ${co.better ? "cheaper" : "more expensive"} <span style="opacity:.7">(${esc(a.scope)})</span></div>`;
+  function multLine(r, good, bad) {
+    return r ? `<span class="x">${fmtX(r)}×<small>${r.better ? good : bad}</small></span>` : `<span class="x">n/a</span>`;
   }
 
   function onFinal(f) {
-    const speed = ratio(f.p50.llm, f.p50.jev);
-    const cost = ratio(f.per1000.llm, f.per1000.jev);
-    const usd = (v) => (v == null ? "n/a" : v < 1 ? `$${v.toFixed(3)}` : `$${v.toFixed(2)}`);
+    const table = `
+      <table class="res">
+        <tr><th></th><th>Category accuracy</th><th>Latency p50</th><th>Cost / 1,000</th></tr>
+        ${f.rows.map((r) => `<tr class="${r.jev ? "jev" : ""}"><td>${esc(r.name)}</td><td>${r.accuracy}%</td><td>${r.p50.toLocaleString("en-US")} ms</td><td>${usd(r.per1000)}</td></tr>`).join("")}
+      </table>`;
+    // Each multiplier is Jev vs that model within the same run
+    const mult = (key, good, bad, label) => `
+      <div class="group"><div class="k">${label}</div>
+        ${f.ratios.map((r) => `<div class="line">${multLine(ratio(r.other[key], r.jev[key]), good, bad)}<span class="vs">vs ${esc(r.vs)}</span></div>`).join("")}
+      </div>`;
     $("#final").innerHTML = `
-      <div class="final-grid">
-        <div class="stat"><div class="k">Category accuracy</div><div class="pair"><span class="jv">${f.accuracy.jev}%<span class="who">Jev</span></span><span class="lv">${f.accuracy.llm}%<span class="who">GPT-4o-mini</span></span></div></div>
-        <div class="stat"><div class="k">Latency p50</div><div class="pair"><span class="jv">${f.p50.jev.toLocaleString("en-US")} ms</span><span class="lv">${f.p50.llm.toLocaleString("en-US")} ms</span></div></div>
-        <div class="stat"><div class="k">Cost per 1,000 messages</div><div class="pair"><span class="jv">${usd(f.per1000.jev)}</span><span class="lv">${usd(f.per1000.llm)}</span></div></div>
-        <div class="sep"></div>
-        <div class="stat big"><div class="k">Speed (p50)</div><div class="x">${speed ? fmtX(speed) + "×" : "n/a"}<small>${speed ? (speed.better ? "faster" : "slower") : ""}</small></div><div class="vs-note">vs GPT-4o-mini</div></div>
-        <div class="stat big"><div class="k">Cost</div><div class="x">${cost ? fmtX(cost) + "×" : "n/a"}<small>${cost ? (cost.better ? "cheaper" : "more expensive") : ""}</small></div><div class="vs-note">vs GPT-4o-mini</div></div>
-        ${altLine(f.alt)}
-      </div>
-      <div class="final-src">${esc(f.source)} · accuracy = exact category match over all rounds · cost = AI Gateway billed cost</div>`;
+      <div>${table}</div>
+      <div class="sep"></div>
+      <div class="mult">${mult("p50", "faster", "slower", "Jev speed (p50)")}${mult("per1000", "cheaper", "more expensive", "Jev cost")}</div>
+      <div class="final-src">${esc(f.source)} · accuracy = exact category match over all rounds · cost = AI Gateway billed cost · multipliers use Jev from the same run as each model</div>`;
     $("#final").classList.add("show");
   }
 
