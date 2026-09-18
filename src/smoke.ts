@@ -1,10 +1,10 @@
-// Jev と比較用LLMが Gateway 経由で呼べるかだけを確認する使い捨てスクリプト
+// Throwaway script that only checks Jev and the comparison LLM can be called via the Gateway
 import { experimental_evaluate as evaluate, generateObject } from "ai";
 import { z } from "zod";
 
 try { process.loadEnvFile(".env.local"); } catch {}
 if (!process.env.AI_GATEWAY_API_KEY?.startsWith("vck_")) {
-  console.error("AI_GATEWAY_API_KEY (vck_...) が .env.local にありません");
+  console.error("AI_GATEWAY_API_KEY (vck_...) is missing from .env.local");
   process.exit(1);
 }
 

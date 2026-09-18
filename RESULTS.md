@@ -1,233 +1,233 @@
-# RESULTS — Jev vs LLM（予約問い合わせの振り分け）
+# RESULTS — Jev vs LLMs (routing booking inquiries)
 
-TypeSafe AI の判断特化モデル **Jev** を、訪日客向け写真撮影サービスの問い合わせ振り分けに見立てた合成データで検証した結果です。
-数字はすべて `results/summary.json` / `results/summary-sonnet.json` から転記しています（手で丸めた値を除いて、計算し直した数字はありません）。
+Results of evaluating TypeSafe AI's judgment-only model **Jev** on synthetic data modeled on inquiry routing for a photo-shoot service for international tourists in Japan.
+Every number is copied from `results/summary.json` / `results/summary-sonnet.json` (apart from rounding for display, nothing was recomputed by hand).
 
 ---
 
-## 1. 実行条件
+## 1. Setup
 
-| 項目 | 値 |
+| Item | Value |
 |---|---|
-| 本計測 | 2026-09-18 11:18:15 – 11:23:19 UTC（20:18 – 20:23 JST）/ run `2026-09-18T11-18-14-993Z` |
-| 追加計測（大型モデル） | 2026-09-18 11:31:50 UTC（20:31 JST）/ run `2026-09-18T11-31-50-447Z` |
-| 検証対象 | `typesafe-ai/jev` |
-| 比較モデル（本計測） | `openai/gpt-4o-mini` |
-| 比較モデル（追加計測） | `anthropic/claude-sonnet-4.5` |
-| 経路 | すべて Vercel AI Gateway（キー1本） |
-| SDK | `ai` 7.0.106（`experimental_evaluate` / `generateObject`）、`@ai-sdk/gateway` 4.0.86、Node v26.5.0 |
-| 本計測の規模 | 60件 × 3周 = モデルごとに180回（+ ウォームアップ1回を破棄） |
-| 追加計測の規模 | 20件 × 1周 = モデルごとに20回（+ ウォームアップ1回を破棄） |
-| エラー | **0件**（全計測、全モデル） |
+| Main run | 2026-09-18 11:18:15 – 11:23:19 UTC (20:18 – 20:23 JST) / run `2026-09-18T11-18-14-993Z` |
+| Extra run (larger model) | 2026-09-18 11:31:50 UTC (20:31 JST) / run `2026-09-18T11-31-50-447Z` |
+| Model under test | `typesafe-ai/jev` |
+| Comparison model (main run) | `openai/gpt-4o-mini` |
+| Comparison model (extra run) | `anthropic/claude-sonnet-4.5` |
+| Route | Everything through Vercel AI Gateway (one key) |
+| SDK | `ai` 7.0.106 (`experimental_evaluate` / `generateObject`), `@ai-sdk/gateway` 4.0.86, Node v26.5.0 |
+| Main run size | 60 cases × 3 rounds = 180 calls per model (+ 1 discarded warm-up) |
+| Extra run size | 20 cases × 1 round = 20 calls per model (+ 1 discarded warm-up) |
+| Errors | **0** (all runs, all models) |
 
-**公平性のために守ったこと**
-- 質問文は両者で一字一句同じ（`src/types.ts` の `QUESTIONS` を Jev にはそのまま、LLM には JSON で渡した）
-- LLM は `generateObject` による構造化出力（JSON を文字列でパースさせる方式ではない）。temperature は既定値
-- 直列実行。リトライは両者とも0回。入力の順序は同じ。ケースごとに呼ぶ順番（Jev が先か LLM が先か）を交互に入れ替えた
-- レイテンシは API 呼び出しの直前から応答受領までを計測。ケースごとに3周の中央値を取り、その60個から p50 / p95 を出した
-- コストは推定ではなく、Gateway が応答に返す実費（`providerMetadata.gateway.cost`）
+**What we did to keep it fair**
+- The question wording is identical for both sides, word for word (`QUESTIONS` in `src/types.ts` is passed to Jev as is and to the LLM as JSON)
+- The LLM uses structured output via `generateObject` (not asked to emit JSON as text for us to parse). Temperature left at the default
+- Serial execution. Zero retries on both sides. Same input order. The call order (Jev first or LLM first) alternates per case
+- Latency is measured from just before the API call until the response is received. We take the median of the 3 rounds per case, then p50 / p95 over those 60 values
+- Cost is not estimated: it is the billed cost the Gateway returns with each response (`providerMetadata.gateway.cost`)
 
-**データ**: 60件（英語30 / 中国語12 / 韓国語9 / 日本語9）。素直なケース40件（8カテゴリ×5件）と、意図的に難しくした20件。
-カテゴリは8種＋`other`（該当なし）の9択。ラベルと、難しいケースで迷った理由は `src/data.ts` にあります。
+**Data**: 60 cases (English 30 / Chinese 12 / Korean 9 / Japanese 9). 40 straightforward cases (8 categories × 5) and 20 deliberately hard ones.
+9-way choice: 8 categories + `other` (none of the above). Labels, and the reasoning behind each hard case, are in `src/data.ts`.
 
 ---
 
-## 2. 先に説明が必要なこと：urgency の数字は閾値の取り方で大きく動く
+## 2. Read this first: the urgency number moves a lot depending on the threshold
 
-urgency は、0〜1 のスコアを **0.5 以上なら high** として、正解ラベルと突き合わせています（BRIEF で決めた主指標）。
+Urgency is a 0–1 score, counted as **high when ≥ 0.5** and compared with the gold label (the primary metric defined in the brief).
 
-gpt-4o-mini は、正解が low のケースで **urgency をちょうど 0.5 と返したことが64回**ありました（180回中、ちょうど0.5を返したのは計69回）。
-「どちらとも言えない」という意味で真ん中の値を返したと考えられますが、主指標の定義では 0.5 は high に数えるため、これが全部不正解になります。
-閾値を「0.5 を超えたら high」に変えると、一致率は 82.8% まで上がります。
+gpt-4o-mini returned **exactly 0.5 for urgency 64 times on cases whose gold label is low** (69 times in total out of 180).
+It presumably used the midpoint to mean "can't tell", but under the primary definition 0.5 counts as high, so every one of these is scored wrong.
+If the threshold is changed to "high when > 0.5", agreement rises to 82.8%.
 
-| urgency 一致率 | 主指標（≥ 0.5 = high） | 参考（> 0.5 = high） | ちょうど 0.5 を返した回数 |
+| Urgency agreement | Primary (≥ 0.5 = high) | Reference (> 0.5 = high) | Times it returned exactly 0.5 |
 |---|---|---|---|
 | Jev | 96.7% | 95.6% | 2 |
 | gpt-4o-mini | 50.0% | 82.8% | 69 |
 
-**これは、スコアの境界値の扱いで生じた測定上の副作用で、モデルの能力差ではありません。**
-以降の表でも、urgency は必ず2つの値を並べて書きます。
-なお Sonnet 4.5 は、ちょうど 0.5 を1回も返しませんでした（両方の閾値で 90%）。
+**This is a side effect of how the boundary value is scored, not a difference in model ability.**
+Everywhere below, urgency is always reported with both values side by side.
+Claude Sonnet 4.5 never returned exactly 0.5 (90% under both thresholds).
 
 ---
 
-## 3. 結果の表（本計測：60件 × 3周）
+## 3. Main results (60 cases × 3 rounds)
 
 | | Jev | gpt-4o-mini |
 |---|---|---|
-| **category 正解率（厳密一致）** | **96.1%**（173/180） | 93.9%（169/180） |
-| category 正解率（準正解込み・参考） | 98.3% | **100%** |
-| 　うち素直なケース40件 | 100% | 100% |
-| 　うち難しいケース20件 | **88.3%** | 81.7% |
-| urgency 一致率（≥0.5 / >0.5） | 96.7% / 95.6% | 50.0% / 82.8%（→ §2） |
-| needs_human 一致率 | 81.7% | 78.9% |
-| needs_human の**見逃し**（人が必要なのに false） | 21 / 69（30.4%） | **16 / 69（23.2%）** |
-| レイテンシ p50 | **379 ms** | 1,209 ms |
-| レイテンシ p95 | **481 ms** | 1,462 ms |
-| 1,000件あたりのコスト（実費） | **$0.032** | $0.122 |
-| 平均トークン（入力 / 出力） | 765 / 119 | 737 / 19 |
+| **Category accuracy (exact match)** | **96.1%** (173/180) | 93.9% (169/180) |
+| Category accuracy (incl. acceptable alternatives, reference) | 98.3% | **100%** |
+| 　Straightforward 40 cases | 100% | 100% |
+| 　Hard 20 cases | **88.3%** | 81.7% |
+| Urgency agreement (≥0.5 / >0.5) | 96.7% / 95.6% | 50.0% / 82.8% (→ §2) |
+| needs_human agreement | 81.7% | 78.9% |
+| needs_human **misses** (human needed, predicted false) | 21 / 69 (30.4%) | **16 / 69 (23.2%)** |
+| Latency p50 | **379 ms** | 1,209 ms |
+| Latency p95 | **481 ms** | 1,462 ms |
+| Cost per 1,000 messages (billed) | **$0.032** | $0.122 |
+| Avg tokens (input / output) | 765 / 119 | 737 / 19 |
 
-- **周ごとの category 正解率**: Jev 96.7 / 96.7 / 95.0%、gpt-4o-mini 93.3 / 93.3 / 95.0%。Jev は3周ともほぼ同じ答えを返した（同じケースでの確率の揺れは最大 0.05 程度）
-- **倍率（この条件での実測）**: Jev のほうが **3.2倍速く**（p50 比）、**3.8倍安い**。TypeSafe の公表値は「193.6倍速く、444.6倍安い」
-- **Jev のコストは公表価格と一致した**: 1回あたり平均で入力765トークン × $0.042 / 100万トークン = $0.0000321 となり、Gateway の請求額（1回平均 $0.0000321）と合う。出力（平均119トークン）は課金されていない
+- **Category accuracy by round**: Jev 96.7 / 96.7 / 95.0%, gpt-4o-mini 93.3 / 93.3 / 95.0%. Jev gave nearly the same answers in all 3 rounds (probabilities for the same case varied by at most about 0.05)
+- **Multipliers (measured under these conditions)**: Jev is **3.2× faster** (p50) and **3.8× cheaper**. TypeSafe's published figures are "193.6× faster, 444.6× cheaper"
+- **Jev's cost matches its published price**: average 765 input tokens × $0.042 per million = $0.0000321 per call, which matches the Gateway's billed amount ($0.0000321 per call on average). Output tokens (119 on average) were not billed
 
 ---
 
-## 4. 比較相手を替えると倍率はどう変わるか（追加計測：20件 × 1周）
+## 4. How the multipliers change with the comparison model (extra run: 20 cases × 1 round)
 
-gpt-4o-mini は最安・最速クラスのモデルです。倍率が比較相手に左右されるかを見るため、大型モデルの `anthropic/claude-sonnet-4.5` で追加計測しました。
+gpt-4o-mini is among the cheapest and fastest models. To see whether the multipliers depend on the comparison model, we added a run against the larger `anthropic/claude-sonnet-4.5`.
 
-- **20件の選び方**: 計測結果を見る前に、機械的なルールで固定した（`src/subsets.ts`）。素直なケースは s01 から4件おき、難しいケースは h01 から2件おき（s01, s05, …, s37, h01, h03, …, h19）
-- **条件**: 本計測と同じ。直列、ウォームアップ1回を破棄、リトライ0。同じ run の中で Jev と Sonnet を交互に呼んだ
+- **How the 20 cases were picked**: fixed by a mechanical rule before seeing any results (`src/subsets.ts`). Straightforward: every 4th from s01; hard: every 2nd from h01 (s01, s05, …, s37, h01, h03, …, h19)
+- **Conditions**: same as the main run. Serial, 1 discarded warm-up, zero retries. Jev and Sonnet were called alternately within the same run
 
-| 同じ20件 | Jev | claude-sonnet-4.5 |
+| Same 20 cases | Jev | claude-sonnet-4.5 |
 |---|---|---|
-| category 正解率（厳密） | 90%（18/20） | 90%（18/20） |
-| category 正解率（準正解込み） | 95% | 95% |
-| urgency 一致率（≥0.5 / >0.5） | 100% / 100% | 90% / 90% |
-| needs_human 一致率 | 80% | 85% |
-| needs_human の見逃し | 4 / 10 | 3 / 10 |
-| レイテンシ p50 / p95 | **416 / 560 ms** | 1,917 / 2,270 ms |
-| 1,000件あたりのコスト（実費） | **$0.032** | $3.41 |
+| Category accuracy (exact) | 90% (18/20) | 90% (18/20) |
+| Category accuracy (incl. acceptable alternatives) | 95% | 95% |
+| Urgency agreement (≥0.5 / >0.5) | 100% / 100% | 90% / 90% |
+| needs_human agreement | 80% | 85% |
+| needs_human misses | 4 / 10 | 3 / 10 |
+| Latency p50 / p95 | **416 / 560 ms** | 1,917 / 2,270 ms |
+| Cost per 1,000 messages (billed) | **$0.032** | $3.41 |
 
-**Jev との倍率（いずれも実測）**
+**Multipliers relative to Jev (all measured)**
 
-| 比較相手 | 速度（p50 比） | コスト | 正解率（category 厳密） |
+| Compared with | Speed (p50 ratio) | Cost | Category accuracy (exact) |
 |---|---|---|---|
-| gpt-4o-mini（60件×3周） | 3.2倍速い | 3.8倍安い | Jev +2.2ポイント |
-| claude-sonnet-4.5（20件×1周） | 4.6倍速い | 106倍安い | 同じ（90% vs 90%） |
-| TypeSafe の公表値 | 193.6倍速い | 444.6倍安い | — |
+| gpt-4o-mini (60 cases × 3 rounds) | 3.2× faster | 3.8× cheaper | Jev +2.2 points |
+| claude-sonnet-4.5 (20 cases × 1 round) | 4.6× faster | 106× cheaper | Tied (90% vs 90%) |
+| TypeSafe's published figures | 193.6× faster | 444.6× cheaper | — |
 
-**読み取れること**: 速度の倍率は比較相手が変わっても 3〜5倍程度でしたが、コストの倍率は **3.8倍から106倍まで、比較相手しだいで大きく変わり**ました。
-今回の条件では、公表値の倍率はどちらの比較相手でも再現しませんでした。ただし、公表値がどのモデルとどういう条件で比べた数字かは、今回は確認できていません。
+**Takeaway**: the speed multiplier stayed around 3–5× regardless of the comparison model, but the cost multiplier **ranged from 3.8× to 106× depending on what Jev is compared with**.
+Under our conditions, the published multipliers were not reproduced with either comparison model. We could not determine which model and conditions the published figures were based on.
 
-参考として、同じ20件を本計測の1周目で見ると、gpt-4o-mini は category 19/20、p50 1,264 ms、1,000件あたり $0.122 でした（run が別なので、上の表には混ぜていません）。
+For reference, the same 20 cases in round 1 of the main run give gpt-4o-mini category 19/20, p50 1,264 ms, $0.122 per 1,000 (a different run, so not mixed into the tables above).
 
-**Sonnet の誤答**: h15 を late_arrival と判定（Jev と gpt-4o-mini も同じ誤り）、h19（北海道のウェディング撮影）を other と判定。一方で、Jev が外した h07（「what time tomorrow?」）は正しく other と答えた。
+**Sonnet's errors**: h15 classified as late_arrival (Jev and gpt-4o-mini made the same mistake), and h19 (wedding shoot in Hokkaido) as other. On the other hand, it correctly answered other for h07 ("what time tomorrow?"), which Jev got wrong.
 
 ---
 
-## 5. Jev が外したケース（category）
+## 5. Cases Jev got wrong (category)
 
-**category を外したのは、60件中3ケースだけでした**（180回中7回）。5件には届かないので、水増しはせず3ケースを載せます。
+**Jev got the category wrong on only 3 of the 60 cases** (7 of 180 calls). That is short of the 5 examples the brief asked for; rather than padding the list, we show those 3.
 
-| id | 原文 | 正解 | Jev の答え | Jev の確率（上位） | 周 |
+| id | Message | Gold | Jev's answer | Jev's probabilities (top) | Rounds |
 |---|---|---|---|---|---|
-| h07 | what time tomorrow? | other | reschedule | reschedule 0.60–0.65 / other 0.35–0.40 | 3周とも外した |
-| h15 | We might be a bit late tomorrow morning because our flight lands at 7. Is the 9am shoot still ok or should we move it later? | reschedule（late_arrival も準正解） | late_arrival | late_arrival 0.83–0.87 / reschedule 0.13–0.17 | 3周とも外した |
-| h06 | tmrw shoot - can we do 4 ppl not 2 and also move to 5pm?? thx | group_size（reschedule も準正解） | reschedule | reschedule 0.51 / group_size 0.45 | 3周中1周だけ外した |
+| h07 | what time tomorrow? | other | reschedule | reschedule 0.60–0.65 / other 0.35–0.40 | Wrong in all 3 |
+| h15 | We might be a bit late tomorrow morning because our flight lands at 7. Is the 9am shoot still ok or should we move it later? | reschedule (late_arrival acceptable) | late_arrival | late_arrival 0.83–0.87 / reschedule 0.13–0.17 | Wrong in all 3 |
+| h06 | tmrw shoot - can we do 4 ppl not 2 and also move to 5pm?? thx | group_size (reschedule acceptable) | reschedule | reschedule 0.51 / group_size 0.45 | Wrong in 1 of 3 |
 
-- **h07 は、この検証で一番測りたかった種類の失敗です**。該当なし（other）の問い合わせを、既存のカテゴリ（reschedule）に当てはめてしまった。準正解を含めても不正解で、Jev の誤りのうち準正解でも救えないのはこの1ケースだけ。gpt-4o-mini と Sonnet はどちらも正しく other と答えた
-- ただし**確率は 0.60〜0.65 と低く**、§8 の運用ルールでは「人間に回す」に落ちるので、実運用では拾える
-- h06 は、2つの確率がほぼ拮抗（0.51 対 0.45）していて、周によって答えが入れ替わった。**確率が「迷っている」ことを正直に表している**例
+- **h07 is exactly the kind of failure this evaluation most wanted to measure**: a message that fits no category (other) forced into an existing one (reschedule). It is wrong even with acceptable alternatives, and it is the only Jev error that alternatives do not rescue. gpt-4o-mini and Sonnet both correctly answered other
+- However, **the probability was low (0.60–0.65)**, so under the operating rule in §8 it falls into "send to a human" and would be caught in practice
+- In h06 the two probabilities are nearly tied (0.51 vs 0.45) and the answer flipped between rounds. **The probabilities honestly show that the model is torn**
 
 ---
 
-## 6. LLM（gpt-4o-mini）が外したケース（category）
+## 6. Cases the LLM (gpt-4o-mini) got wrong (category)
 
-**外したのは4ケース**（180回中11回）で、5件には届きません。**4ケースとも準正解の範囲内**なので、準正解込みの正解率は100%になります。
+**It got 4 cases wrong** (11 of 180 calls), also short of 5. **All 4 are within the acceptable alternatives**, so its accuracy including alternatives is 100%.
 
-| id | 原文 | 正解 | gpt-4o-mini の答え | 周 |
+| id | Message | Gold | gpt-4o-mini's answer | Rounds |
 |---|---|---|---|---|
-| h02 | Typhoon warning for Saturday. If we can't shoot, do we get our money back or can we move it? | weather（refund / reschedule も準正解） | refund | 3周とも外した |
-| h10 | 내일 비 오면 그냥 취소하고 환불 받을 수 있나요?（明日雨ならキャンセルして返金してもらえますか） | weather（cancel / refund も準正解） | refund | 3周とも外した |
-| h15 | We might be a bit late tomorrow morning … should we move it later? | reschedule（late_arrival も準正解） | late_arrival | 3周とも外した |
-| h16 | How much would it cost to add my grandparents? They just decided to come. | pricing（group_size も準正解） | group_size | 3周中2周外した |
+| h02 | Typhoon warning for Saturday. If we can't shoot, do we get our money back or can we move it? | weather (refund / reschedule acceptable) | refund | Wrong in all 3 |
+| h10 | 내일 비 오면 그냥 취소하고 환불 받을 수 있나요? (If it rains tomorrow, can I just cancel and get a refund?) | weather (cancel / refund acceptable) | refund | Wrong in all 3 |
+| h15 | We might be a bit late tomorrow morning … should we move it later? | reschedule (late_arrival acceptable) | late_arrival | Wrong in all 3 |
+| h16 | How much would it cost to add my grandparents? They just decided to come. | pricing (group_size acceptable) | group_size | Wrong in 2 of 3 |
 
-- LLM は確率を返さないので、「どのくらい迷ったか」は分からない
-- h02 と h10 について、Jev は weather（0.61〜0.65）と答えつつ refund にも 0.31〜0.35 を振っていて、迷っていることが確率に出ている
+- The LLM returns no probabilities, so there is no way to tell how unsure it was
+- On h02 and h10, Jev answered weather (0.61–0.65) while putting 0.31–0.35 on refund; its hesitation shows up in the probabilities
 
 ---
 
-## 7. needs_human の見逃し（3周とも外した7ケース）
+## 7. needs_human misses (7 cases missed in all 3 rounds)
 
-「人の確認が必要」なケースを false と判定したものです。**Jev の最大の弱点はここ**で、見逃しは 21/69 回（gpt-4o-mini は 16/69 回）。
-Jev は次の7ケースで、3周とも同じように見逃しました（1周目と2周目の値は `results/per-case.json` にあります）。
+These are cases that need a human but were predicted false. **This is Jev's biggest weakness**: 21/69 misses (gpt-4o-mini: 16/69).
+Jev missed the following 7 cases the same way in all 3 rounds (round-by-round values are in `results/per-case.json`).
 
-| id | 原文 | 正解 | Jev の P(needs_human) | Jev の category（確率） | gpt-4o-mini |
+| id | Message | Gold | Jev P(needs_human) | Jev category (prob.) | gpt-4o-mini |
 |---|---|---|---|---|---|
-| **h01** | 台風で飛行機が飛ばないので、明日の撮影を土曜に変えたいです。 | true | **0.40 – 0.43** | reschedule（1.00） | true（3/3 正解） |
-| **h08** | Please unsubscribe me from this mailing list. | true | **0.25 – 0.30** | other（0.99） | false（3/3 見逃し） |
-| h15 | We might be a bit late tomorrow morning … should we move it later? | true | 0.29 – 0.30 | late_arrival（0.83–0.87） | 1/3 見逃し |
-| h17 | 촬영장소가 비가 오면 실내로 바뀌나요? 그럼 가격도 달라지나요?（雨なら屋内に変わる？料金も変わる？） | true | 0.38 – 0.39 | weather（0.99） | 3/3 見逃し |
-| h18 | 請問可以改期嗎（日程変更できますか） | true | 0.28 – 0.33 | reschedule（1.00） | 3/3 見逃し |
-| h19 | I booked with you guys last year and loved it! Do you do wedding shoots in Hokkaido?? 😍📸 | true | 0.26 | location（0.97–0.98） | 3/3 見逃し |
-| h20 | 취소해주세요.（キャンセルしてください） | true | 0.47 – 0.49 | cancel（1.00） | true（3/3 正解） |
+| **h01** | 台風で飛行機が飛ばないので、明日の撮影を土曜に変えたいです。 (Our flight is grounded by the typhoon, so we'd like to move tomorrow's shoot to Saturday.) | true | **0.40 – 0.43** | reschedule (1.00) | true (3/3 correct) |
+| **h08** | Please unsubscribe me from this mailing list. | true | **0.25 – 0.30** | other (0.99) | false (3/3 missed) |
+| h15 | We might be a bit late tomorrow morning … should we move it later? | true | 0.29 – 0.30 | late_arrival (0.83–0.87) | 1/3 missed |
+| h17 | 촬영장소가 비가 오면 실내로 바뀌나요? 그럼 가격도 달라지나요? (If it rains, does the shoot move indoors? Does the price change then?) | true | 0.38 – 0.39 | weather (0.99) | 3/3 missed |
+| h18 | 請問可以改期嗎 (Can I reschedule?) | true | 0.28 – 0.33 | reschedule (1.00) | 3/3 missed |
+| h19 | I booked with you guys last year and loved it! Do you do wedding shoots in Hokkaido?? 😍📸 | true | 0.26 | location (0.97–0.98) | 3/3 missed |
+| h20 | 취소해주세요. (Please cancel.) | true | 0.47 – 0.49 | cancel (1.00) | true (3/3 correct) |
 
-### 本文で引用する2ケース
+### Two cases to quote
 
-**h01（台風で飛行機が飛ばない → 明日の撮影を土曜に変更）**
-- 原文: 「台風で飛行機が飛ばないので、明日の撮影を土曜に変えたいです。」
-- 正解: category = reschedule（weather も準正解）、urgency = high、needs_human = **true**
-- ラベルの理由: 翌日の撮影で、天候を理由にした日程変更には、手数料の免除など人の判断が要る
-- Jev の答え（3周）:
-  - category: reschedule 1.00（3周とも。正解）
-  - urgency: 0.88 / 0.88 / 0.91（high。正解）
-  - needs_human: P = **0.42 / 0.40 / 0.43 → false（見逃し）**
-- gpt-4o-mini: 3周とも reschedule、urgency = 1、needs_human = true（すべて正解）
-- ポイント: **category の確率が 1.00 なので、§8 の運用ルールでは「自動処理」に入ってしまう**
+**h01 (flight grounded by a typhoon → move tomorrow's shoot to Saturday)**
+- Message: 「台風で飛行機が飛ばないので、明日の撮影を土曜に変えたいです。」 ("Our flight is grounded by the typhoon, so we'd like to move tomorrow's shoot to Saturday.")
+- Gold: category = reschedule (weather acceptable), urgency = high, needs_human = **true**
+- Why: the shoot is tomorrow, and a weather-driven date change needs a human decision (e.g. whether to waive the change fee)
+- Jev (3 rounds):
+  - category: reschedule 1.00 (all 3; correct)
+  - urgency: 0.88 / 0.88 / 0.91 (high; correct)
+  - needs_human: P = **0.42 / 0.40 / 0.43 → false (missed)**
+- gpt-4o-mini: reschedule, urgency = 1, needs_human = true in all 3 rounds (all correct)
+- Point: **because the category probability is 1.00, the operating rule in §8 sends it to "auto-process"**
 
-**h08（メール配信の停止）**
-- 原文: 「Please unsubscribe me from this mailing list.」
-- 正解: category = other、urgency = low、needs_human = **true**（撮影の予約とは無関係なので、人が別の窓口に振り直す必要がある）
-- Jev の答え（3周）:
-  - category: other 0.99（3周とも。正解。cancel には 0.01 しか振っていない）
-  - urgency: 0.00 / 0.01 / 0.00（low。正解）
-  - needs_human: P = **0.25 / 0.30 / 0.27 → false（見逃し）**
-- gpt-4o-mini: 3周とも other、urgency = 0、needs_human = false（Jev と同じく見逃し）
-- ポイント: 「予約とは無関係」とは正しく判断できているのに、「だから人が振り直す必要がある」まではつながっていない。ラベルの付け方（事業範囲外なら true）に議論の余地があるケースでもある
+**h08 (unsubscribe from the mailing list)**
+- Message: "Please unsubscribe me from this mailing list."
+- Gold: category = other, urgency = low, needs_human = **true** (unrelated to shoot bookings, so a human has to reroute it)
+- Jev (3 rounds):
+  - category: other 0.99 (all 3; correct; only 0.01 on cancel)
+  - urgency: 0.00 / 0.01 / 0.00 (low; correct)
+  - needs_human: P = **0.25 / 0.30 / 0.27 → false (missed)**
+- gpt-4o-mini: other, urgency = 0, needs_human = false in all 3 rounds (missed, same as Jev)
+- Point: Jev correctly sees that the message is unrelated to bookings, but does not connect that to "so a human needs to reroute it". The labeling rule (out of scope → true) is also debatable for this case
 
-**この7ケースに共通すること**: category は高い確率で正しく当てているのに、needs_human が 0.5 を少し下回っている。
-「情報が足りない」（h18, h20）、「複数の要件がある」（h17）、「範囲外」（h08, h19）という、ルールの後半の条件を拾えていない。
+**What the 7 cases have in common**: the category is correct with high probability, but needs_human sits just below 0.5.
+Jev does not pick up the latter conditions in the rule: "missing information" (h18, h20), "several requests at once" (h17), "out of scope" (h08, h19).
 
 ---
 
-## 8. 運用シミュレーション（Jev の確率を使った振り分け）
+## 8. Operational simulation (routing on Jev's probabilities)
 
-Jev が返す category の**最大確率**で、180回の判断を3段階に振り分けました（LLM は確率を返さないので、このシミュレーションはできません）。
+We split Jev's 180 decisions into three tiers by the **maximum category probability** (the LLM returns no probabilities, so this simulation is not possible for it).
 
-| 振り分け | 条件 | 件数 | 割合 | category の正解率 | そのうち人が必要なケース | うち needs_human の見逃し |
+| Tier | Condition | Calls | Share | Category accuracy | Of which need a human | Of which needs_human missed |
 |---|---|---|---|---|---|---|
-| **自動処理** | 確率 > 0.95 | 157 | **87.2%** | **100%（157/157）** | 49 | **18**（h01, h08, h17, h18, h19, h20 × 3周） |
-| 追加確認 | 0.70 – 0.95 | 8 | 4.4% | 62.5%（5/8） | 8 | 3（h15 × 3周） |
-| 人間に回す | < 0.70 | 15 | 8.3% | 73.3%（11/15） | 12 | 0 |
+| **Auto-process** | prob. > 0.95 | 157 | **87.2%** | **100% (157/157)** | 49 | **18** (h01, h08, h17, h18, h19, h20 × 3 rounds) |
+| Extra check | 0.70 – 0.95 | 8 | 4.4% | 62.5% (5/8) | 8 | 3 (h15 × 3 rounds) |
+| Send to a human | < 0.70 | 15 | 8.3% | 73.3% (11/15) | 12 | 0 |
 
-- **振り分け（category）の精度という意味では、非常に強い結果**です。確率 0.95 を超えたときは一度も外さず、全体の87%を自動処理に回せた。外した7回（h07 の 0.60〜0.65、h06 の 0.51、h15 の 0.83〜0.87）は、すべて自動処理の外（追加確認か人間に回す）に落ちた
-- **ただし、「自動処理157件が全問正解」は category だけを見た数字です**。自動処理に入った157件のうち、人の確認が必要なケースが49件あり、**そのうち18件（6ケース×3周）は Jev の needs_human も false でした**。つまり「category の確率が高い」かつ「Jev も人は不要と言っている」ので、どこにも人のチェックがかからず自動処理を通り抜けてしまう
-- 実運用で使うなら、category の確率だけで自動処理を決めずに、**needs_human の確率にも閾値を設ける**（例: P(needs_human) が 0.3 を超えたら人に回す）などの追加ルールが必要になる。閾値は結果を見てから選ぶことになるため、検証値ではなく設計の提案として §8.1 に試算した
+- **As a category router, this is a very strong result.** Above 0.95 it was never wrong, and 87% of traffic could be auto-processed. All 7 wrong calls (h07 at 0.60–0.65, h06 at 0.51, h15 at 0.83–0.87) fell outside auto-process (extra check or human)
+- **However, "157 auto-processed, all correct" only looks at category.** Of those 157, 49 actually needed a human, and **for 18 of them (6 cases × 3 rounds) Jev's needs_human was also false.** In other words, the category is high-confidence *and* Jev says no human is needed, so nothing puts a human in the loop and they pass straight through auto-processing
+- In production, auto-processing should not be decided by category probability alone; an additional rule such as **a threshold on the needs_human probability** is needed. Because such a threshold would be chosen after seeing the results, we present it as a design proposal rather than a validated value in §8.1
 
-追加計測の20件でも同じ傾向でした。自動処理は85%（17件）で category は全問正解、うち3件（h01, h17, h19）で needs_human を見逃した。
+The extra 20-case run showed the same pattern: 85% (17 calls) auto-processed with category all correct, and 3 of them (h01, h17, h19) were needs_human misses.
 
-### 8.1 設計の提案：自動処理の条件を2段構えにした場合（感度分析）
+### 8.1 Design proposal: a two-stage auto-process condition (sensitivity analysis)
 
-上のすり抜けを防ぐ案として、自動処理の条件を次の2段構えにした場合を計算しました。
+As a way to stop the pass-through above, we computed a two-stage auto-process condition:
 
-> 自動処理 = category の最大確率 > 0.95　**かつ**　P(needs_human) < X
+> Auto-process = max category probability > 0.95　**and**　P(needs_human) < X
 
-**この閾値は結果を見たあとに選んだものであり、検証された値ではない。実運用では、自社のデータで別途決める必要がある。**
+**These thresholds were chosen after seeing the results and are not validated values. In production they have to be set separately on your own data.**
 
-本計測（60件×3周、全180回）の結果です。基準は、category の確率だけで自動処理を決めた場合（157回、すり抜け18回）です。
+Main run (60 cases × 3 rounds, 180 calls). The baseline is auto-processing on category probability alone (157 calls, 18 pass-throughs).
 
-| X | 自動処理（回数） | 割合 | category の正解率 | すり抜けた needs_human の見逃し | 18回のうち拾えた数 | 追加で人に回った回数 |
+| X | Auto-processed | Share | Category accuracy | needs_human misses passing through | Caught (of the 18) | Additionally sent to a human |
 |---|---|---|---|---|---|---|
-| なし（category だけ） | 157 | 87.2% | 100% | 18 | — | — |
-| 0.50 | 117 | 65.0% | 100% | 18（h01, h08, h17, h18, h19, h20） | 0 | 40 |
-| 0.40 | 99 | 55.0% | 100% | 12（h08, h17, h18, h19） | 6 | 58 |
-| 0.30 | 53 | 29.4% | 100% | 6（h08, h18, h19） | 12 | 104 |
+| none (category only) | 157 | 87.2% | 100% | 18 | — | — |
+| 0.50 | 117 | 65.0% | 100% | 18 (h01, h08, h17, h18, h19, h20) | 0 | 40 |
+| 0.40 | 99 | 55.0% | 100% | 12 (h08, h17, h18, h19) | 6 | 58 |
+| 0.30 | 53 | 29.4% | 100% | 6 (h08, h18, h19) | 12 | 104 |
 | 0.25 | 35 | 19.4% | 100% | **0** | **18** | 122 |
 | 0.20 | 10 | 5.6% | 100% | 0 | 18 | 147 |
 
-- 「追加で人に回った回数」は、category だけの場合（157回）から減った分（＝自動化率の低下分）
-- **X = 0.50 は、Jev の needs_human の判定（P ≥ 0.5 なら true）をそのまま使うのと同じ**。これで人に回る40回は、Jev 自身が「人が必要」と判定していた分で、すり抜けの18回は1回も拾えない（18回とも P < 0.5 のため）
-- **18回を全部拾うには X ≤ 0.25 が必要で、そのとき自動処理は 87.2% から 19.4% まで下がる**。見逃したケースの P(needs_human) は 0.25〜0.49 に散らばっていて、本当に人が不要なケースとの境目がはっきりしない。Jev の needs_human の確率は、category の確率ほどきれいには分かれていない
-- どの X でも、自動処理に残ったものの category 正解率は 100% のまま
-- 追加計測の20件（Sonnet との比較 run の Jev）でも同じ形でした。基準は自動処理17回・すり抜け3回で、X = 0.25 ですり抜け0（自動処理は4回、20%）、X = 0.30 で1回（h19）、X = 0.50 で3回のまま
+- "Additionally sent to a human" is the drop from the category-only baseline of 157 (i.e. the loss in automation rate)
+- **X = 0.50 is the same as using Jev's own needs_human verdict (true if P ≥ 0.5).** The 40 calls it routes to a human are the ones Jev itself flagged; it catches none of the 18 pass-throughs (all 18 have P < 0.5)
+- **Catching all 18 requires X ≤ 0.25, at which point auto-processing drops from 87.2% to 19.4%.** The P(needs_human) values of the missed cases are spread across 0.25–0.49, with no clear boundary from cases that truly need no human. Jev's needs_human probabilities are not as cleanly separated as its category probabilities
+- At every X, category accuracy among the auto-processed calls stays at 100%
+- The extra 20-case run (Jev from the Sonnet comparison run) had the same shape: baseline 17 auto-processed with 3 pass-throughs; X = 0.25 gives 0 pass-throughs (4 auto-processed, 20%), X = 0.30 gives 1 (h19), and X = 0.50 still leaves 3
 
 ---
 
-## 9. カテゴリ別の正解率（本計測・厳密一致・3周をまとめた値）
+## 9. Category accuracy by gold category (main run, exact match, all rounds pooled)
 
-| 正解カテゴリ | 回数 | Jev | gpt-4o-mini |
+| Gold category | Calls | Jev | gpt-4o-mini |
 |---|---|---|---|
 | reschedule | 27 | 88.9% | 88.9% |
 | cancel | 18 | 100% | 100% |
@@ -239,47 +239,47 @@ Jev が返す category の**最大確率**で、180回の判断を3段階に振�
 | weather | 24 | 100% | **75.0%** |
 | other | 18 | **83.3%** | 100% |
 
-- gpt-4o-mini は、天候に絡む問い合わせ（h02, h10）を refund に寄せる傾向があった
-- Jev は other（該当なし）で、「明日何時？」を既存カテゴリに当てはめた（h07）
-- 図: `results/charts/1-category-accuracy.svg`、`2-latency.svg`、`3-cost-per-1000.svg`
+- gpt-4o-mini tended to pull weather-related inquiries (h02, h10) toward refund
+- Jev forced "what time tomorrow?" (h07), which belongs in other, into an existing category
+- Charts: `results/charts/1-category-accuracy.svg`, `2-latency.svg`, `3-cost-per-1000.svg`
 
 ---
 
-## 10. Jev が勝った点・負けた点
+## 10. Where Jev won and where it lost
 
-**勝った点**
-- 速度: p50 で gpt-4o-mini の3.2倍、Sonnet 4.5 の4.6倍速い。p95 も 481 ms と安定していた
-- コスト: gpt-4o-mini の3.8倍、Sonnet 4.5 の106倍安い。請求額は公表価格（入力 $0.042 / 100万トークン、出力は無料）と一致した
-- 難しいケースでの category: 88.3%（gpt-4o-mini は 81.7%）
-- **確率が使える**: category の確率が 0.95 を超えたときは180回中157回あり、一度も外さなかった。迷っているケースでは確率が割れた（h06: 0.51 対 0.45）。LLM にはない、運用に直結する情報
-- 再現性: 3周でほぼ同じ答えを返した
+**Won**
+- Speed: 3.2× faster than gpt-4o-mini and 4.6× faster than Sonnet 4.5 at p50. p95 was a steady 481 ms
+- Cost: 3.8× cheaper than gpt-4o-mini and 106× cheaper than Sonnet 4.5. The billed amount matched the published price ($0.042 per million input tokens, output free)
+- Category on hard cases: 88.3% (gpt-4o-mini 81.7%)
+- **Usable probabilities**: category probability exceeded 0.95 on 157 of 180 calls and was never wrong there. When the model was unsure, the probabilities split (h06: 0.51 vs 0.45). This is operationally useful information that the LLM does not provide
+- Reproducibility: nearly identical answers across 3 rounds
 
-**負けた点**
-- **needs_human の見逃しが多い**: 21/69 回（gpt-4o-mini は 16/69）。BRIEF の例文 h01 も見逃した
-- **category は当てているのに、人の確認が必要なケースが自動処理をすり抜ける**: 自動処理157件のうち18件（§8）。needs_human の確率で塞ごうとすると、全部拾うには自動化率が 87% から 19% まで下がる（§8.1、後から選んだ閾値での試算）
-- **該当なし（other）を既存カテゴリに当てはめた**: h07 を3周とも reschedule と判定した（gpt-4o-mini と Sonnet は正解）
-- 準正解込みの category では、gpt-4o-mini（100%）が Jev（98.3%）を上回った
-- 公表値の倍率（193.6倍速い、444.6倍安い）は、今回の2つの比較相手ではどちらも再現しなかった
-
----
-
-## 11. この検証の限界
-
-- **合成データ**: 実際の顧客データは使っていない。実務に寄せて作ったが、実際の問い合わせの分布（言語の比率、長さ、カテゴリの偏り）とは違う可能性がある
-- **ラベル付けは1人**（作成は Claude、確認と修正は Shogo）。複数人による一致率は測っていない。特に needs_human の「事業範囲外なら true」（h08）や、準正解の範囲には判断の余地がある
-- **単一のネットワーク環境**: 1台のマシンから、1つのネットワークで、1つの時間帯に計測した。レイテンシは Gateway までの距離や混み具合に左右される
-- **倍率は比較相手のモデルによって変わる**: gpt-4o-mini と Sonnet 4.5 で、コストの倍率は3.8倍から106倍まで変わった。Sonnet での計測は20件×1周だけ
-- **n=60**（追加計測は n=20）: 1ケースの違いで正解率が1.7ポイント（n=20 では5ポイント）動く。モデル間の正解率の差（例: 96.1% 対 93.9%）が統計的に意味のある差とは言えない
-- **プロンプトは1種類**: 両者に同じ文面を使ったが、LLM 向けにプロンプトを工夫すれば、LLM の結果は変わりうる（今回は公平性のために工夫しなかった）
-- **urgency は閾値の定義に敏感**（§2）
+**Lost**
+- **More needs_human misses**: 21/69 (gpt-4o-mini 16/69). It missed h01, the example from the brief
+- **Cases that need a human slip through auto-processing even when the category is right**: 18 of the 157 auto-processed calls (§8). Closing the gap with a needs_human threshold drops automation from 87% to 19% if all of them are to be caught (§8.1, estimated with a post-hoc threshold)
+- **Forced a no-category message into an existing category**: h07 classified as reschedule in all 3 rounds (gpt-4o-mini and Sonnet got it right)
+- Including acceptable alternatives, gpt-4o-mini (100%) beat Jev (98.3%) on category
+- The published multipliers (193.6× faster, 444.6× cheaper) were not reproduced against either comparison model
 
 ---
 
-## 12. 再現に使ったファイル
+## 11. Limitations
 
-- データとラベル: `src/data.ts`（難しいケースで迷った理由をコメントに残している）
-- 質問文: `src/types.ts`
-- 計測: `src/run.ts`、`src/jev.ts`、`src/baseline.ts`
-- 集計: `src/score.ts` → `results/summary.json`、`results/per-case.json`（Sonnet の分は `-sonnet` が付いたファイル）
-- 生の応答: `results/raw/`（gitignore 対象）
-- デモ: `npm run demo`（12件は `src/demo-cases.ts` で、結果を見る前に固定）
+- **Synthetic data**: no real customer data was used. The cases were modeled on real-world practice, but the real distribution (language mix, length, category balance) may differ
+- **A single annotator** (drafted by Claude, reviewed and corrected by one person). Inter-annotator agreement was not measured. In particular, needs_human = true for out-of-scope messages (h08) and the range of acceptable alternatives involve judgment calls
+- **A single network environment**: one machine, one network, one time window. Latency depends on the distance to the Gateway and on load
+- **The multipliers depend on the comparison model**: the cost multiplier ranged from 3.8× to 106× between gpt-4o-mini and Sonnet 4.5. The Sonnet run was only 20 cases × 1 round
+- **n = 60** (n = 20 for the extra run): one case changes accuracy by 1.7 points (5 points at n = 20). The accuracy gaps between models (e.g. 96.1% vs 93.9%) cannot be called statistically meaningful
+- **One prompt**: both sides got the same wording; prompt-engineering for the LLM could change its results (we deliberately did not, for fairness)
+- **Urgency is sensitive to the threshold definition** (§2)
+
+---
+
+## 12. Files used for reproduction
+
+- Data and labels: `src/data.ts` (comments explain the labeling call on hard cases)
+- Question wording: `src/types.ts`
+- Measurement: `src/run.ts`, `src/jev.ts`, `src/baseline.ts`
+- Scoring: `src/score.ts` → `results/summary.json`, `results/per-case.json` (the Sonnet run's files carry a `-sonnet` suffix)
+- Raw responses: `results/raw/` (gitignored)
+- Demo: `npm run demo` (the 12 cases are in `src/demo-cases.ts`, fixed before seeing results)

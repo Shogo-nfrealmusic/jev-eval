@@ -1,7 +1,7 @@
-// Jev と LLM を同条件で直列実行し、生の応答を results/raw/<runId>/ に保存する。
-//   npx tsx src/run.ts                 全60件 × 3周
-//   npx tsx src/run.ts --limit 3 --rounds 1   動作確認用
-//   npx tsx src/run.ts --subset large20 --rounds 1 --llm anthropic/claude-sonnet-4.5   比較相手を替えた追加計測
+// Runs Jev and the LLM serially under identical conditions and saves raw responses to results/raw/<runId>/.
+//   npx tsx src/run.ts                 all 60 cases × 3 rounds
+//   npx tsx src/run.ts --limit 3 --rounds 1   quick sanity check
+//   npx tsx src/run.ts --subset large20 --rounds 1 --llm anthropic/claude-sonnet-4.5   extra run against a different comparison model
 import { mkdirSync, appendFileSync, writeFileSync } from "node:fs";
 import { parseArgs } from "node:util";
 import { CASES } from "./data.ts";
@@ -11,7 +11,7 @@ import { callBaseline, BASELINE_MODEL } from "./baseline.ts";
 import type { CallResult } from "./common.ts";
 
 try { process.loadEnvFile(".env.local"); } catch {}
-if (!process.env.AI_GATEWAY_API_KEY) throw new Error("AI_GATEWAY_API_KEY が .env.local にありません");
+if (!process.env.AI_GATEWAY_API_KEY) throw new Error("AI_GATEWAY_API_KEY is missing from .env.local");
 
 const { values } = parseArgs({
   options: {
@@ -51,7 +51,7 @@ function record(system: System, round: number, caseId: string, r: CallResult) {
   appendFileSync(`${dir}/${system}.jsonl`, JSON.stringify({ system, round, caseId, ...r }) + "\n");
 }
 
-// ウォームアップ: 各システム1回ずつ呼んで捨てる（保存はするが集計しない）
+// Warm-up: call each system once and discard (saved, but not scored)
 for (const s of Object.keys(systems) as System[]) {
   const first = cases[0]!;
   const r = await systems[s](first.text);
@@ -59,7 +59,7 @@ for (const s of Object.keys(systems) as System[]) {
   console.log(`warmup ${s}: ${r.ok ? "ok" : r.error} ${Math.round(r.latencyMs)}ms`);
 }
 
-// 本計測: 直列。入力順は両者で同じ。どちらが先に呼ばれるかの偏りを消すため、ケースごとに先後を入れ替える。
+// Main run: serial. Same input order for both. Alternate which system goes first per case to cancel ordering bias.
 for (let round = 1; round <= rounds; round++) {
   for (const [i, c] of cases.entries()) {
     const order: System[] = (i + round) % 2 === 0 ? ["jev", "llm"] : ["llm", "jev"];

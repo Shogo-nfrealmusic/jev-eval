@@ -1,6 +1,6 @@
-// results/summary.json と results/per-case.json からブログ用 SVG を3枚作る（results/charts/）。
-// 背景は透明。系列色は light/dark 両方の面で検証済み（dataviz の validate_palette.js で両モード PASS）。
-// 文字は中間グレー1色で、白背景でも黒背景でも読める。
+// Builds 3 SVGs for the blog from results/summary.json and results/per-case.json (results/charts/).
+// Transparent background. Series colors verified on both light and dark surfaces (dataviz validate_palette.js PASS in both modes).
+// Text is a single mid-gray, readable on both white and black backgrounds.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { CATEGORIES } from "./types.ts";
 
@@ -13,7 +13,7 @@ const NAME = { jev: "Jev", llm: "GPT-4o-mini" } as const;
 const FONT = `font-family="Inter, Helvetica Neue, Arial, sans-serif" font-variant-numeric="tabular-nums"`;
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const text = (x: number, y: number, s: string, a = "") => `<text x="${x}" y="${y}" fill="${C.ink}" ${a}>${esc(s)}</text>`;
-// 4px 角丸は右端（データ側）だけ。左端（ベースライン）は直角。
+// 4px rounded corners on the right end (data side) only. Left end (baseline) is square.
 const hbar = (x: number, y: number, w: number, h: number, fill: string) => {
   if (w <= 0) return "";
   const r = Math.min(4, w, h / 2);
@@ -24,7 +24,7 @@ const legend = (x: number, y: number) =>
 const svg = (w: number, h: number, title: string, body: string) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" ${FONT} role="img" aria-label="${esc(title)}">\n<title>${esc(title)}</title>\n${body}\n</svg>\n`;
 
-// ---- 1. カテゴリ別の正解率 ----
+// ---- 1. Accuracy by category ----
 {
   const W = 720, left = 110, right = 60, top = 70, rowH = 40, barH = 14, gap = 2;
   const H = top + CATEGORIES.length * rowH + 40;
@@ -46,7 +46,7 @@ const svg = (w: number, h: number, title: string, body: string) =>
   writeFileSync("results/charts/1-category-accuracy.svg", svg(W, H, "Category accuracy by category: Jev vs GPT-4o-mini", b));
 }
 
-// ---- 2. レイテンシの分布（ケースごとの3周中央値。summary の p50/p95 と同じ母集団） ----
+// ---- 2. Latency distribution (per-case median of 3 rounds; same population as summary p50/p95) ----
 {
   const med = (xs: number[]) => { const s = [...xs].sort((a, b) => a - b); const m = (s.length - 1) / 2; return (s[Math.floor(m)]! + s[Math.ceil(m)]!) / 2; };
   const pts = { jev: [] as number[], llm: [] as number[] };
@@ -66,7 +66,7 @@ const svg = (w: number, h: number, title: string, body: string) =>
   (["jev", "llm"] as const).forEach((k, i) => {
     const cy = top + i * laneH + laneH / 2;
     b += text(left - 10, cy + 4, NAME[k], `font-size="13" text-anchor="end"`);
-    // 決定的なジッタ（ケース順）で重なりを避ける
+    // Deterministic jitter (by case order) to avoid overlap
     pts[k].forEach((v, j) => {
       const jy = cy - 16 + ((j * 37) % 33);
       b += `<circle cx="${x(v).toFixed(1)}" cy="${jy}" r="4" fill="${C[k]}" fill-opacity="0.75"/>`;
@@ -80,7 +80,7 @@ const svg = (w: number, h: number, title: string, body: string) =>
   writeFileSync("results/charts/2-latency.svg", svg(W, H, "Latency distribution: Jev vs GPT-4o-mini", b));
 }
 
-// ---- 3. 1,000件あたりのコスト ----
+// ---- 3. Cost per 1,000 requests ----
 {
   const W = 720, left = 110, right = 120, top = 60, barH = 28, rowH = 48;
   const H = top + 2 * rowH + 30;

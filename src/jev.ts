@@ -7,7 +7,7 @@ export const JEV_MODEL = "typesafe-ai/jev";
 export async function callJev(text: string): Promise<CallResult> {
   const t0 = performance.now();
   try {
-    // リトライは LLM 側と同じく 0 回（条件を揃える）
+    // 0 retries, same as the LLM side (equal conditions)
     const r = await evaluate({ model: JEV_MODEL, state: text, questions: QUESTIONS, maxRetries: 0 });
     const latencyMs = performance.now() - t0;
     const a = r.answers;

@@ -5,7 +5,7 @@ import { errorMessage, gatewayCost, type CallResult } from "./common.ts";
 
 export const BASELINE_MODEL = "openai/gpt-4o-mini";
 
-// Jev に渡すのと同じ QUESTIONS をそのまま JSON にして渡す。LLM 側だけの工夫は入れない。
+// Pass the same QUESTIONS given to Jev, serialized as JSON as-is. No LLM-only tweaks.
 const schema = z.object({
   category: z.enum(CATEGORIES).describe(QUESTIONS.category.instructions),
   urgency: z

@@ -1,7 +1,7 @@
-// results/raw/<runId>/ を集計して results/summary.json と results/per-case.json を出す。
-//   npx tsx src/score.ts            最新の run を集計
+// Aggregates results/raw/<runId>/ into results/summary.json and results/per-case.json.
+//   npx tsx src/score.ts            score the latest run
 //   npx tsx src/score.ts <runId>
-//   npx tsx src/score.ts <runId> <name>   results/summary-<name>.json / per-case-<name>.json に出す（追加計測用）
+//   npx tsx src/score.ts <runId> <name>   write results/summary-<name>.json / per-case-<name>.json (for extra runs)
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { CASES } from "./data.ts";
 import { CATEGORIES, type Case, type Category } from "./types.ts";
@@ -45,7 +45,7 @@ function summarize(rows: Row[]) {
   const errors = rows.length - ok.length;
   const c = (r: Row) => caseById.get(r.caseId)!;
 
-  // category（厳密 / 準正解込み）、urgency、needs_human は全周をプールして算出。周ごとの値も残す。
+  // category (strict / incl. partial credit), urgency, and needs_human are computed over all rounds pooled. Per-round values are kept too.
   const acc = (pred: (r: Row) => boolean, subset = ok) => ({ correct: subset.filter(pred).length, n: subset.length, pct: pct(subset.filter(pred).length, subset.length) });
   const byRound = (pred: (r: Row) => boolean) =>
     [...new Set(ok.map((r) => r.round))].sort().map((round) => acc(pred, ok.filter((r) => r.round === round)).pct);
@@ -66,7 +66,7 @@ function summarize(rows: Row[]) {
   const humanPositives = ok.filter((r) => c(r).expected.needsHuman);
   const missed = humanPositives.filter((r) => !predHuman(r.prediction!.needsHumanProb));
 
-  // レイテンシ: BRIEF どおり、ケースごとに3周の中央値を取り、その60個から p50/p95
+  // Latency: per BRIEF, take each case's median over 3 rounds, then p50/p95 over those 60 values
   const perCaseLatency = RUN_CASES.map((cs) => ok.filter((r) => r.caseId === cs.id).map((r) => r.latencyMs))
     .filter((xs) => xs.length > 0)
     .map(median);
@@ -85,7 +85,7 @@ function summarize(rows: Row[]) {
     urgency: {
       ...acc(urgPred),
       byRound: byRound(urgPred),
-      // 参考: ちょうど 0.5 を返した回数と、閾値を「> 0.5」にした場合の一致率（主指標は BRIEF どおり >= 0.5）
+      // For reference: count of exactly 0.5 and agreement with a "> 0.5" threshold (primary metric is >= 0.5 per BRIEF)
       exactlyHalf: ok.filter((r) => r.prediction!.urgency === 0.5).length,
       strictlyAboveHalf: acc((r) => (r.prediction!.urgency > 0.5) === (c(r).expected.urgency === "high")),
     },
@@ -110,7 +110,7 @@ function summarize(rows: Row[]) {
   };
 }
 
-// 運用シミュレーション（Jev のみ。LLM は確率を返さないので不可）: category の最大確率で3段階に振り分け
+// Operational simulation (Jev only; impossible for the LLM, which returns no probabilities): route into 3 tiers by max category probability
 function simulate(rows: Row[]) {
   const ok = rows.filter((r) => r.ok && topProb(r) !== undefined);
   const bucket = (p: number) => (p > 0.95 ? "auto" : p >= 0.7 ? "confirm" : "human");
@@ -118,7 +118,7 @@ function simulate(rows: Row[]) {
   for (const b of ["auto", "confirm", "human"]) {
     const xs = ok.filter((r) => bucket(topProb(r)!) === b);
     const correct = xs.filter((r) => catOk(caseById.get(r.caseId)!, r.prediction!.category)).length;
-    // category は正しくても、人の確認が必要な案件を Jev が needs_human=false と判定したもの（自動処理にすり抜ける）
+    // Category correct, but Jev judged needs_human=false on a case that needs human review (slips through to automation)
     const nhExpected = xs.filter((r) => caseById.get(r.caseId)!.expected.needsHuman);
     const nhMissed = nhExpected.filter((r) => !predHuman(r.prediction!.needsHumanProb));
     out[b] = {
@@ -127,8 +127,8 @@ function simulate(rows: Row[]) {
       needsHumanMissedCases: [...new Set(nhMissed.map((r) => r.caseId))],
     };
   }
-  // 設計の提案（検証値ではない）: 自動処理を「category 最大確率 > 0.95 かつ P(needs_human) < X」にした場合の感度分析。
-  // X は結果を見たあとに選んだ値。
+  // Design proposal (not a validated value): sensitivity analysis for automating when "max category probability > 0.95 and P(needs_human) < X".
+  // X was chosen after seeing the results.
   const autoBase = ok.filter((r) => topProb(r)! > 0.95);
   const baseMissed = autoBase.filter((r) => caseById.get(r.caseId)!.expected.needsHuman && !predHuman(r.prediction!.needsHumanProb)).length;
   const needsHumanGate = [0.2, 0.25, 0.3, 0.4, 0.5].map((x) => {
@@ -140,7 +140,7 @@ function simulate(rows: Row[]) {
       auto: auto.length,
       share: pct(auto.length, ok.length),
       categoryAccuracy: pct(correct, auto.length),
-      // 自動処理に残った「人が必要なケース」（= すり抜け）
+      // Cases that need a human but stayed in automation (= slip-throughs)
       slippedNeedsHuman: slipped.length,
       slippedCases: [...new Set(slipped.map((r) => r.caseId))],
       caughtOfBaseMissed: baseMissed - slipped.length,
@@ -167,7 +167,7 @@ const summary = {
 };
 writeFileSync(`results/summary${suffix}.json`, JSON.stringify(summary, null, 2));
 
-// ケースごとの全周の予測（RESULTS.md の誤答例とデモのリプレイに使う。原文は合成データ）
+// Per-case predictions across all rounds (used for RESULTS.md error examples and demo replay; source texts are synthetic)
 const perCase = RUN_CASES.map((c) => ({
   id: c.id, lang: c.lang, hard: c.hard, text: c.text, expected: c.expected, alsoAcceptable: c.alsoAcceptable,
   runs: Object.fromEntries(SYSTEMS.map((s) => [s, rows[s].filter((r) => r.caseId === c.id).sort((a, b) => a.round - b.round).map((r) => ({

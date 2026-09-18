@@ -186,13 +186,13 @@
   }
 
   function ratio(a, b) {
-    // a / b。1 未満なら「遅い／高い」と表記するため値と向きを返す
+    // a / b. Returns value and direction so values below 1 can be shown as "slower / more expensive"
     if (!a || !b) return null;
     return a >= b ? { x: a / b, better: true } : { x: b / a, better: false };
   }
   const fmtX = (r) => (r.x >= 10 ? r.x.toFixed(0) : r.x.toFixed(1));
 
-  // 比較相手を替えた追加計測の倍率（倍率は比較相手しだいで変わることを示す）
+  // Ratios from the extra run with a different comparison model (shows the ratio depends on the comparison model)
   function altLine(a) {
     if (!a) return "";
     const sp = ratio(a.p50.llm, a.p50.jev), co = ratio(a.per1000.llm, a.per1000.jev);
@@ -231,7 +231,7 @@
   }
   addEventListener("click", start);
   addEventListener("keydown", (e) => { if (e.code === "Space") start(); });
-  // 録画用: /?autostart で読み込み1秒後に自動開始
+  // For recording: /?autostart starts automatically 1s after load
   if (new URLSearchParams(location.search).has("autostart")) setTimeout(start, 1000);
 </script>
 </body>

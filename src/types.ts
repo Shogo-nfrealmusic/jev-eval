@@ -1,4 +1,4 @@
-// 質問の定義と共通型。Jev と LLM に送る文面はすべてここから作る（両者で完全に同一）。
+// Question definitions and shared types. All text sent to Jev and the LLM is built from here (identical for both).
 
 export const CATEGORIES = [
   "reschedule",
@@ -19,18 +19,18 @@ export type Case = {
   id: string;
   lang: Lang;
   text: string;
-  /** 意図的に難しくしたケースか */
+  /** Whether the case was made intentionally hard */
   hard: boolean;
   expected: {
     category: Category;
     urgency: "low" | "high";
     needsHuman: boolean;
   };
-  /** 2カテゴリにまたがるケースで、正解に準じると判断したもの（参考集計用。主指標は category のみ） */
+  /** For cases spanning 2 categories, labels judged as partially correct (reference metric only; primary metric is category) */
   alsoAcceptable?: Category[];
 };
 
-// ---- 質問文（両モデル共通） ----
+// ---- Question text (shared by both models) ----
 
 export const CONTEXT =
   "You are triaging customer inquiries sent to a photo-shoot service for international tourists visiting Japan. " +

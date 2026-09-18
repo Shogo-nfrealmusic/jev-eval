@@ -1,6 +1,6 @@
-// デモ用サーバー（Node 標準の http + SSE のみ）。
-//   npm run demo        リプレイ: 計測済みの結果を、実測 ms どおりの時間で再生する
-//   npm run demo:live   ライブ: その場で Jev と LLM を呼ぶ（表示用。計測結果には混ぜない）
+// Demo server (Node built-in http + SSE only).
+//   npm run demo        replay: plays back measured results with the actual measured ms timing
+//   npm run demo:live   live: calls Jev and the LLM on the spot (display only; never mixed into measured results)
 import { createServer, type ServerResponse } from "node:http";
 import { existsSync, readFileSync } from "node:fs";
 import { setTimeout as sleep } from "node:timers/promises";
@@ -9,11 +9,11 @@ import { CASES } from "../src/data.ts";
 
 const LIVE = process.argv.includes("--live");
 const PORT = Number(process.env.PORT ?? 5173);
-// リプレイで使う周。1周目の実測値をそのまま使う（中央値などの加工はしない）
+// Round used for replay. Uses round 1 measurements as-is (no median or other processing)
 const REPLAY_ROUND = 1;
 
 const summary = JSON.parse(readFileSync("results/summary.json", "utf8"));
-// 比較相手を替えた追加計測（あれば最終パネルに併記する）
+// Extra run with a different comparison model (shown alongside in the final panel if present)
 const summarySonnet = existsSync("results/summary-sonnet.json") ? JSON.parse(readFileSync("results/summary-sonnet.json", "utf8")) : null;
 const perCase: any[] = JSON.parse(readFileSync("results/per-case.json", "utf8"));
 const demo = DEMO_CASE_IDS.map((id) => {
@@ -26,7 +26,7 @@ type Outcome = { ok: boolean; error?: string | undefined; latencyMs: number; cat
 
 async function replay(lane: Lane, id: string): Promise<Outcome> {
   const run = perCase.find((c) => c.id === id)!.runs[lane].find((r: any) => r.round === REPLAY_ROUND);
-  // 画面上の待ち時間 = 実測レイテンシ
+  // On-screen wait time = measured latency
   await sleep(run.latencyMs);
   return run;
 }
@@ -45,7 +45,7 @@ function finalStats() {
     accuracy: { jev: j.category.strict.pct, llm: l.category.strict.pct },
     p50: { jev: j.latencyMs.p50, llm: l.latencyMs.p50 },
     per1000: { jev: j.cost.per1000Usd, llm: l.cost.per1000Usd },
-    // 追加計測は同じ run 内の Jev と比較する（本計測の Jev とは混ぜない）
+    // Extra runs compare against Jev from the same run (not mixed with the main run's Jev)
     alt: summarySonnet && {
       label: "Claude Sonnet 4.5",
       scope: `${summarySonnet.nCases} cases × ${summarySonnet.rounds} round`,
@@ -60,7 +60,7 @@ async function stream(res: ServerResponse) {
   const send = (data: unknown) => res.write(`data: ${JSON.stringify(data)}\n\n`);
   send({ type: "meta", live: LIVE, total: demo.length, nAll: summary.nCases, date: summary.startedAt.slice(0, 10), round: REPLAY_ROUND, models: { jev: summary.jev.model, llm: summary.llm.model } });
 
-  // 左右のレーンを同時に流す。各レーン内は直列。
+  // Stream left and right lanes concurrently. Serial within each lane.
   await Promise.all((["jev", "llm"] as Lane[]).map(async (lane) => {
     for (const [i, c] of demo.entries()) {
       send({ type: "start", lane, i, case: c });

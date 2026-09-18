@@ -1,75 +1,75 @@
 # jev-eval
 
-TypeSafe AI の判断特化モデル **Jev**（`typesafe-ai/jev`）を、LLM（`openai/gpt-4o-mini`、追加で `anthropic/claude-sonnet-4.5`）と同じ条件で比べた第三者検証です。
-題材は、訪日客向け写真撮影サービスに届く予約問い合わせの振り分け（合成データ60件、4言語）。
+A third-party check of **Jev** (`typesafe-ai/jev`), TypeSafe AI's judgment-only model, against LLMs (`openai/gpt-4o-mini`, plus `anthropic/claude-sonnet-4.5`) under identical conditions.
+The task: routing booking inquiries sent to a photo-shoot service for international tourists in Japan (60 synthetic messages in 4 languages).
 
-**結果は [RESULTS.md](RESULTS.md) にあります。**
+**Results are in [RESULTS.md](RESULTS.md).**
 
-## 必要なもの
+## Requirements
 
-- Node.js（検証時は v26.5.0）と npm
-- Vercel AI Gateway の API キー（`vck_` で始まる）。Jev も比較用の LLM も、このキー1本で呼びます
+- Node.js (tested with v26.5.0) and npm
+- A Vercel AI Gateway API key (starts with `vck_`). Jev and the comparison LLMs are all called through this one key
 
-### AI_GATEWAY_API_KEY の用意
+### Getting an AI_GATEWAY_API_KEY
 
-1. Vercel にログインし、ダッシュボードの AI Gateway の画面で API キーを作成する
-2. 無料枠ではレート制限（429）にかかり、全件計測は途中で止まります。また、モデルによっては無料枠で使えません（Claude など）。**AI Gateway にクレジットを入れてから**計測してください。全件計測（60件×3周×2モデル）の実費は $0.03 程度でした
-3. リポジトリ直下に `.env.local` を作り、キーを書く
+1. Log in to Vercel and create an API key on the AI Gateway page of your dashboard
+2. On the free tier you will hit rate limits (HTTP 429) and the full run stops partway; some models (e.g. Claude) are not available on the free tier at all. **Add AI Gateway credits before measuring.** The full run (60 cases × 3 rounds × 2 models) cost about $0.03
+3. Create `.env.local` in the repository root with the key
 
 ```bash
 echo "AI_GATEWAY_API_KEY=vck_xxxxxxxx" > .env.local
 ```
 
-`.env.local` は `.gitignore` 済みです。キーをコードに直接書いたり、コミットしたりしないでください。
+`.env.local` is gitignored. Never hard-code the key or commit it.
 
-## セットアップ
+## Setup
 
 ```bash
 npm install
-npx tsx src/smoke.ts   # Jev と LLM が Gateway 経由で呼べるかを1回ずつ確認
+npx tsx src/smoke.ts   # one call each to Jev and the LLMs, to confirm they are reachable through the Gateway
 ```
 
-## コマンド
+## Commands
 
-| コマンド | 内容 |
+| Command | What it does |
 |---|---|
-| `npm run measure` | 本計測。60件 × 3周を、Jev と gpt-4o-mini で直列に実行し、生の応答を `results/raw/<runId>/` に保存する。最初に各モデル1回ずつウォームアップして捨てる。リトライは0回 |
-| `npm run measure -- --subset large20 --rounds 1 --llm anthropic/claude-sonnet-4.5` | 比較相手を替えた追加計測（20件は `src/subsets.ts` で固定） |
-| `npm run score` | いちばん新しい run を集計して `results/summary.json` と `results/per-case.json` を出す。run を指定するなら `npm run score -- <runId>`。追加計測の分は `npm run score -- <runId> sonnet` で `-sonnet` が付いたファイルに出る |
-| `npm run charts` | `results/summary.json` からブログ用の SVG 3枚を `results/charts/` に出す（背景は透明で、ライト・ダークどちらの背景でも読める） |
-| `npm run demo` | リプレイのデモ。http://localhost:5173 を開き、クリックか Space キーで開始する（`/?autostart` を付けると読み込み1秒後に自動で始まる）。1280×720 固定の画面。計測済みの12件を、1周目の実測レイテンシどおりの時間で左右同時に再生する |
-| `npm run demo:live` | ライブのデモ。その場で API を叩く（計測ではない。左右のレーンを並列に呼ぶので、計測条件とは違う） |
-| `npm run typecheck` | TypeScript の型チェック |
+| `npm run measure` | Main run. 60 cases × 3 rounds, Jev and gpt-4o-mini called serially; raw responses saved to `results/raw/<runId>/`. One warm-up call per model is discarded first. No retries |
+| `npm run measure -- --subset large20 --rounds 1 --llm anthropic/claude-sonnet-4.5` | Extra run with a different comparison model (the 20 cases are fixed in `src/subsets.ts`) |
+| `npm run score` | Scores the most recent run into `results/summary.json` and `results/per-case.json`. To pick a run: `npm run score -- <runId>`. For the extra run, `npm run score -- <runId> sonnet` writes files suffixed `-sonnet` |
+| `npm run charts` | Writes three SVG charts for the blog post to `results/charts/` (transparent background, readable on both light and dark pages) |
+| `npm run demo` | Replay demo. Open http://localhost:5173 and click or press Space to start (append `/?autostart` to start automatically 1 s after load). Fixed 1280×720 layout. Replays 12 measured cases side by side, each taking exactly its measured round-1 latency |
+| `npm run demo:live` | Live demo that calls the APIs on the spot. Not a measurement: both lanes are called in parallel, which differs from the measurement conditions |
+| `npm run typecheck` | TypeScript type check |
 
-注意: `npm run score` は引数なしだと **いちばん新しい run** を集計します。追加計測のあとに本計測を集計し直すときは、runId を指定してください。
+Note: with no argument, `npm run score` scores the **most recent** run. After an extra run, pass the runId explicitly to re-score the main run.
 
-## ファイル構成
+## Layout
 
 ```
 src/
-  types.ts        質問の定義（Jev と LLM に送る文面はすべてここ）とカテゴリ
-  data.ts         合成データ60件と正解ラベル（難しいケースは迷った理由をコメントに残している）
-  jev.ts          Jev を呼ぶ（experimental_evaluate）
-  baseline.ts     比較用の LLM を呼ぶ（generateObject による構造化出力）
-  common.ts       共通の型と、Gateway の実費の取り出し
-  run.ts          計測（直列、ウォームアップ、周回、生の応答の保存）
-  score.ts        集計（正解率、レイテンシ p50/p95、コスト、運用シミュレーション）
-  charts.ts       ブログ用 SVG
-  subsets.ts      追加計測用の20件（結果を見る前に機械的に固定）
-  demo-cases.ts   デモ用の12件（結果を見る前に機械的に固定）
-  smoke.ts        疎通確認
+  types.ts        Question definitions (every word sent to Jev and the LLM lives here) and categories
+  data.ts         60 synthetic cases with gold labels (hard cases carry comments explaining the labeling call)
+  jev.ts          Calls Jev (experimental_evaluate)
+  baseline.ts     Calls the comparison LLM (structured output via generateObject)
+  common.ts       Shared types; extracts the Gateway's billed cost
+  run.ts          Measurement (serial, warm-up, rounds, raw response logging)
+  score.ts        Scoring (accuracy, latency p50/p95, cost, operational simulation)
+  charts.ts       SVG charts
+  subsets.ts      The 20 cases for the extra run (fixed mechanically before seeing results)
+  demo-cases.ts   The 12 demo cases (fixed mechanically before seeing results)
+  smoke.ts        Connectivity check
 web/
-  server.ts       デモのサーバー（Node 標準の http + SSE、依存の追加なし）
-  index.html      デモの画面
+  server.ts       Demo server (Node's built-in http + SSE, no extra dependencies)
+  index.html      Demo page
 results/
-  summary*.json   集計結果
-  per-case*.json  ケースごとの全周の予測（原文は合成データ）
-  charts/         SVG
-  raw/            生の応答（gitignore 対象）
-RESULTS.md        結果と誤答例、検証の限界
-BRIEF.md          この検証の指示書
+  summary*.json   Scored results
+  per-case*.json  Every prediction per case and round (message texts are synthetic)
+  charts/         SVGs
+  raw/            Raw responses (gitignored)
+RESULTS.md        Results, error examples, limitations
+BRIEF.md          The original brief for this evaluation (Japanese)
 ```
 
-## データについて
+## About the data
 
-`src/data.ts` の60件はすべて合成データです。実在の顧客・予約・連絡先は含みません。ラベル付けは1人で行っています（詳細は RESULTS.md の「この検証の限界」）。
+All 60 cases in `src/data.ts` are synthetic. They contain no real customers, bookings, or contact details. Labels were assigned by a single annotator (see "Limitations" in RESULTS.md).

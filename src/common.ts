@@ -1,14 +1,14 @@
-// jev.ts / baseline.ts が返す共通の形
+// Common shape returned by jev.ts / baseline.ts
 import type { Category } from "./types.ts";
 
 export type Prediction = {
   category: Category;
-  /** Jev のみ。LLM は確率を返さないので undefined */
+  /** Jev only. undefined for the LLM, which returns no probabilities */
   categoryProbs?: Record<string, number> | undefined;
-  /** 0〜1。0.5 以上を high とみなす */
+  /** 0 to 1. 0.5 or above counts as high */
   urgency: number;
   urgencyProbs?: Record<string, number> | undefined;
-  /** Jev は P(true)、LLM は true/false を 1/0 で入れる */
+  /** Jev: P(true). LLM: true/false stored as 1/0 */
   needsHumanProb: number;
 };
 
@@ -19,7 +19,7 @@ export type CallResult = {
   error?: string;
   prediction?: Prediction;
   usage?: { inputTokens: number | undefined; outputTokens: number | undefined };
-  /** Gateway が返す実費（USD）。取れなければ undefined */
+  /** Actual cost (USD) reported by the Gateway. undefined if unavailable */
   costUsd?: number | undefined;
   raw?: unknown;
 };
